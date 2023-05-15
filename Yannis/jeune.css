@@ -29,16 +29,36 @@
     margin-bottom: 20px;
 }
 header{
-    background: linear-gradient(0.25turn, white, rgb(145, 144, 144));
+    background: radial-gradient(circle at top 0% left 30%,rgb(247, 247, 247),lightgrey 30%,rgb(190, 190, 190));
 }
 .image{
     margin-left: 40px;
     width: 382px;
     height: 250px;
 }
+.menunav{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+}
 li{
     display: inline;
     padding: 0.8vw; 
+}
+
+
+.nav{
+    background-color: lightgrey;
+    background: radial-gradient(circle at top 0% left 30%,rgb(247, 247, 247),lightgrey 30%,rgb(190, 190, 190));
+    grid-row: 1;
+    grid-column: 2 / 3;
+}
+.navi{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
 }
 ul{
     font-size: 1.1vw;
@@ -46,26 +66,25 @@ ul{
     font-family: Arial, Helvetica, sans-serif;
 }
 li:nth-child(1){
+    grid-row: 1;
+    grid-column: 1 / 4;
     color: rgb(219, 0, 142);
 }
 li:nth-child(2){
+    grid-row: 1;
+    grid-column: 2 / 4;
     color: rgb(0, 146, 0);
 }
 li:nth-child(3){
+    grid-row: 1;
+    grid-column: 3 / 4;
     color: rgb(0, 171, 227);
 }
-mark{
-    background-color: rgb(219, 0, 142);
-    color: rgb(255, 255, 255);
-    padding: 0.3vw;
+li:nth-child(4){
+    grid-row: 1;
+    grid-column: 4 / 4;
+    color:black;
 }
-.nav{
-    background-color: lightgrey;
-    background: radial-gradient(circle at top 0% left 30%,rgb(247, 247, 247),lightgrey 30%,rgb(190, 190, 190));
-    margin-left: 33vw;
-    height: 3vw;
-}
-
 .logg{
     font-size: 1.3vw;
     padding: 0.3vw;
@@ -79,5 +98,6 @@ mark{
 #log{
     display: flex; 
     align-items: center;
-    margin-left: 7vw;
+    grid-row: 1;
+    grid-column: 3 / 3;
 }
