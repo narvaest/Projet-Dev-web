@@ -1,16 +1,7 @@
 <?php 
 
 
-
-//sqlite_query($db_handle, "CREATE TABLE matable ( ID INTEGER PRIMARY KEY, nom TEXT, prenom TEXT, email TEXT, date_naissance TEXT, mdp, TEXT);", NULL, $error);
-
-
-
-
-$bdd = new PDO('sqlite:test.db');
-
-
-
+$bdd = new PDO('sqlite:bdd.db');
 
 
 if(isset($_POST['inscription'])){
@@ -20,42 +11,46 @@ if(isset($_POST['inscription'])){
     echo empty($_POST['mdp']);
     echo empty($_POST['conf_mdp']);
     
-    if(!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['mail']) && !empty($_POST['mdp']) && !empty($_POST['conf_mdp'])){
+    if(!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['mail']) && !empty($_POST['mdp']) && !empty($_POST['conf_mdp']) && !empty($_POST['date'])){
         // on empeche les injections sql et on stocke les variables
         $nom=htmlspecialchars($_POST['nom']);
         $prenom=htmlspecialchars($_POST['prenom']);
-        $email=htmlspecialchars($_POST['email']);
+        $mail=htmlspecialchars($_POST['mail']);
         $date=htmlspecialchars($_POST['date']);
         
+        $check = $bdd->prepare('SELECT nom, mail, mdp FROM utilisateur WHERE mail = ?');
+        $check->execute(array($mail));
+        $data = $check->fetch();
+        $row = $check->rowCount();
 
-        if((strlen($prenom) <= 20) && (strlen($nom) <= 20)){ // On verifie que la longueur du nom/prenom <= 20
-            if(strlen($email) <= 100){ // On verifie que la longueur du mail <= 100
-                if(filter_var($email, FILTER_VALIDATE_EMAIL)){ // On vérifie si l'email est de la bonne forme
-                    if($_POST['mdp'] === $_POST['conf_mdp']){ // si les deux mdp saisis sont bon
-    
-                        // "Crypte" le mot de passe
-                        
-                        $mdp=password_hash($_POST['mdp'], PASSWORD_DEFAULT);
-    
-                        // On insère dans la base de données
-                        $insert = $bdd->prepare('INSERT INTO utilisateurs(pseudo, email, password, ip, token) VALUES(:prenom, :nom, :date :email, :mdp');
-                        $insert->execute(array(
-                            'prenom'=> $prenom,
-                            'nom' => $nom,
-                            'date'=> $date,
-                            'email' => $email,
-                            'mdp' => $mdp,
-    
-                        ));
-                        // On redirige avec le message de succès
-                        header('Location:inscription.php?reg_err=success');
-                        die();
-                    }else{ header('Location: v1.php?reg_err=mdp'); die();}
-                }else{ header('Location: v1.php?reg_err=email'); die();}
-            }else{ header('Location: v1.php?reg_err=longueur_mail'); die();}
-        }else{ header('Location: v1.php?reg_err=longueur_nom/prenom'); die();}
-
-        if($requete==null){
+        if($row==0){
+            if((strlen($prenom) <= 20) && (strlen($nom) <= 20)){ // On verifie que la longueur du nom/prenom <= 20
+                if(strlen($mail) <= 100){ // On verifie que la longueur du mail <= 100
+                    if(filter_var($mail, FILTER_VALIDATE_EMAIL)){ // On vérifie si l'email est de la bonne forme
+                        if($_POST['mdp'] === $_POST['conf_mdp']){ // si les deux mdp saisis sont bon
+        
+                            // "Crypte" le mot de passe
+                            
+                            $mdp=password_hash($_POST['mdp'], PASSWORD_DEFAULT);
+        
+                            // On insère dans la base de données
+                            $insert = $bdd->prepare('INSERT INTO utilisateur (nom, prenom, date, mail, mdp) VALUES(:nom, :prenom, :date, :mail, :mdp)');
+                            $insert->execute(array(
+                                'nom' => $nom,
+                                'prenom'=> $prenom, 
+                                'date'=> $date,
+                                'mail' => $mail,
+                                'mdp' => $mdp
+                            ));
+                            // On redirige avec le message de succès
+                            header('Location:inscription.php?reg_err=success');
+                            die();
+                        }else{ header('Location: v1.php?reg_err=mdp'); die();}
+                    }else{ header('Location: v1.php?reg_err=email'); die();}
+                }else{ header('Location: v1.php?reg_err=longueur_mail'); die();}
+            }else{ header('Location: v1.php?reg_err=longueur_nom/prenom'); die();}
+        }else{ echo('utilisateur déja enregistré'); die();}
+        if($insert==null){
             echo("problème lors de l'inscription");
         }
     }
@@ -83,6 +78,9 @@ if(isset($_POST['inscription'])){
             <br>
             <label for="prenom">Votre Prénom</label>
             <input id="prenom" name="prenom" type="text" placeholder="Entrez votre prénom">
+            <br>
+            <label for="date">Votre date de naissance</label>
+            <input id="date" name="date" type="date">
             <br>
             <label for="mail">Votre Adresse Email</label>
             <input id="mail" name="mail" type="email" placeholder="Entrez votre Email">
