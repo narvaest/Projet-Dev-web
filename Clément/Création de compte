@@ -1,1 +1,98 @@
-...
+<?php 
+
+
+
+//sqlite_query($db_handle, "CREATE TABLE matable ( ID INTEGER PRIMARY KEY, nom TEXT, prenom TEXT, email TEXT, date_naissance TEXT, mdp, TEXT);", NULL, $error);
+
+
+
+
+$bdd = new PDO('sqlite:test.db');
+
+
+
+
+
+if(isset($_POST['inscription'])){
+    echo empty($_POST['nom']);
+    echo empty($_POST['prenom']);
+    echo empty($_POST['mail']);
+    echo empty($_POST['mdp']);
+    echo empty($_POST['conf_mdp']);
+    
+    if(!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['mail']) && !empty($_POST['mdp']) && !empty($_POST['conf_mdp'])){
+        // on empeche les injections sql et on stocke les variables
+        $nom=htmlspecialchars($_POST['nom']);
+        $prenom=htmlspecialchars($_POST['prenom']);
+        $email=htmlspecialchars($_POST['email']);
+        $date=htmlspecialchars($_POST['date']);
+        
+
+        if((strlen($prenom) <= 20) && (strlen($nom) <= 20)){ // On verifie que la longueur du nom/prenom <= 20
+            if(strlen($email) <= 100){ // On verifie que la longueur du mail <= 100
+                if(filter_var($email, FILTER_VALIDATE_EMAIL)){ // On vérifie si l'email est de la bonne forme
+                    if($_POST['mdp'] === $_POST['conf_mdp']){ // si les deux mdp saisis sont bon
+    
+                        // "Crypte" le mot de passe
+                        
+                        $mdp=password_hash($_POST['mdp'], PASSWORD_DEFAULT);
+    
+                        // On insère dans la base de données
+                        $insert = $bdd->prepare('INSERT INTO utilisateurs(pseudo, email, password, ip, token) VALUES(:prenom, :nom, :date :email, :mdp');
+                        $insert->execute(array(
+                            'prenom'=> $prenom,
+                            'nom' => $nom,
+                            'date'=> $date,
+                            'email' => $email,
+                            'mdp' => $mdp,
+    
+                        ));
+                        // On redirige avec le message de succès
+                        header('Location:inscription.php?reg_err=success');
+                        die();
+                    }else{ header('Location: v1.php?reg_err=mdp'); die();}
+                }else{ header('Location: v1.php?reg_err=email'); die();}
+            }else{ header('Location: v1.php?reg_err=longueur_mail'); die();}
+        }else{ header('Location: v1.php?reg_err=longueur_nom/prenom'); die();}
+
+        if($requete==null){
+            echo("problème lors de l'inscription");
+        }
+    }
+    else{
+        echo'noooonnnn';
+    }
+}
+ 
+    
+
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>création de compte</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <form action="" method="POST">
+            <label for="nom">Votre nom</label>
+            <input id="nom" name="nom" type="text" placeholder="Entrez votre nom">
+            <br>
+            <label for="prenom">Votre Prénom</label>
+            <input id="prenom" name="prenom" type="text" placeholder="Entrez votre prénom">
+            <br>
+            <label for="mail">Votre Adresse Email</label>
+            <input id="mail" name="mail" type="email" placeholder="Entrez votre Email">
+            <br>
+            <label for="mdp">Mot de passe</label>
+            <input id="mdp" name="mdp" type="password">
+            <label for="conf_mdp">Confirmation Mot de passe</label>
+            <input id="conf_mdp" name="conf_mdp" type="password">
+            <br>
+            <input type="submit" value="inscription" name="inscription">
+        </form>
+    </body>
+</html>
