@@ -18,12 +18,12 @@ if (isset($_POST['inscription'])) {
         $mail = htmlspecialchars($_POST['mail']);
         $date = htmlspecialchars($_POST['date']);
 
-        $check = $bdd->prepare('SELECT nom, mail, mdp FROM utilisateur WHERE mail = ?');
-        $check->execute(array($mail));
-        $data = $check->fetch();
-        $row = $check->rowCount();
 
-        if ($row == 0) {
+        $check = $bdd->prepare('SELECT COUNT(*) AS count FROM utilisateur WHERE mail = ?');
+        $check->execute(array($mail));
+        $row = $check->fetch();
+
+        if ($row['count'] == 0) {
             if ((strlen($prenom) <= 20) && (strlen($nom) <= 20)) { // On vérifie que la longueur du nom/prénom <= 20
                 if (strlen($mail) <= 100) { // On vérifie que la longueur du mail <= 100
                     if (filter_var($mail, FILTER_VALIDATE_EMAIL)) { // On vérifie si l'e-mail est de la bonne forme
