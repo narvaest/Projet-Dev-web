@@ -1,6 +1,7 @@
 idée pour la suite : (je sais pas si ça fonctionne comme ça )
 
-session_start(); // sur la page d'accueil suivi de
+// sur la page d'accueil
+session_start(); 
 $_SESSION['connexion'] = 'visiteur';
 
 //lors de la connexion
