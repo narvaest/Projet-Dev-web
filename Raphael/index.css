@@ -1,0 +1,59 @@
+
+r {
+    text-align: center;
+    font-style: normal;
+    color: rgb(33, 33, 107);
+    font-family: 'Arial';
+    font-size: 40px;
+    line-height: 20px;
+}
+
+p{
+    text-align: center;
+    font-style: normal;
+    color:  rgb(33, 33, 107);
+    font-family: Arial;
+    font-size: 28px;
+    line-height: 32px;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: lightgrey;
+    background: radial-gradient(circle at top 0% left 30%, rgb(247, 247, 247), lightgrey 20%, rgb(190, 190, 190));
+    overflow: hidden;
+}
+
+.fill-div{
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: red;
+    border-bottom: 40px;
+    font-size: 30px;
+    text-align: center;
+    font-style: normal;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(149, 145, 145);
+    width: 100%;
+    height: 5vh;
+}
+
