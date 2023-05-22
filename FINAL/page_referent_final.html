@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="referent.css">
+    <title>Jeunes 6.4</title>
+    
+</head>
+<body>
+    <header role="banner">
+        <div class="container">
+            <div name="logo" id="logo">
+                <img src="logo2.png" alt="logo.jpg" class="image">
+            </div>
+            <div class="text">
+                <div class="titre" id="bigtext">
+                Référent
+                </div>  
+                <div class="titre" id="soustexte">
+                Je confirme la valeur de ton engagement
+                </div>          
+            </div>
+        </div>   
+    </header> 
+
+    <!--------------------------------------->
+    <div class="menunav">
+        <div class="nav">
+            <div class="navi">
+                <div class="jeune" id="navigation"><a href="page_jeune_final.html" title="aller a jeune">Jeune</a></div>
+                <div class="referent" id="navigation"><a href="page_referent_final.html" title="aller a referent"><mark>Référent</mark></a></div>
+                <div class="consultant" id="navigation"><a href="page_consultant_final.html" title="aller a consultant">Consultant</a></div>
+                <div class="partenaire" id="navigation"><a href="page_partenaire_final.html" title="aller a partenaire">Partenaire</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="subtitle">
+        <a> Confirmez cette expérience et ce que vous avez <br>
+            pu constater au contact de ce jeune.</a>
+    </div>
+
+
+    <div class="container2">
+
+        <div class="middle">
+            <form class="formulaire1" action="#" method="POST">
+                <div class="align-label-input">
+                    <label for="nom">NOM :</label>
+                    <input type="text" id="nom" name="nom" required>
+                </div>
+                <div class="align-label-input">
+                    <label for="prenom">PRENOM :</label>
+                    <input type="text" id="prenom" name="prenom" required>
+                </div>
+                <div class="align-label-input">
+                    <label for="date">DATE DE NAISSANCE:</label>
+                    <input type="text" id="date" name="date" required>
+                </div>
+                <div class="align-label-input">
+                    <label for="email">MAIL :</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="align-label-input">
+                    <label for="reseau">Reseau social :</label>
+                    <input type="text" id="reseau" name="reseau" required>
+                </div>
+                <div class="align-label-input">
+                    <label for="engagement">PRESENTATION :</label>
+                    <input type="text" id="engagement" name="engagement" required>
+                </div>
+                <div class="align-label-input">
+                    <label for="duree">DUREE :</label>
+                    <input type="text" id="duree" name="duree" required>
+                </div>
+            </form>
+        </div>
+
+        <div class="right">
+
+            <h2 style="color:  rgba(197, 214, 6, 0.479)">MES SAVOIRS ETRE </h2>
+
+            <form class="formulaire2">
+
+                <h3 class="titre_encadrer">Je suis*</h3>
+                <label1 for="Confiance">
+                    <input class="check" type="checkbox" id="confiance" name="savoir" value="1"> Confiance
+                </label1><br>
+                <label1 for="Bienveillance">
+                    <input class="check" type="checkbox" id="bienveillance" name="savoir" value="2"> Bienveillance
+                </label1><br>
+                <label1 for="Respect">
+                    <input class="check" type="checkbox" id="respect" name="savoir" value="3"> Respect
+                </label1><br>
+                <label1 for="Honnetete">
+                    <input class="check" type="checkbox" id="honnetete" name="savoir" value="4"> Honnêteté
+                </label1><br>
+                <label1 for="Tolerance">
+                    <input class="check" type="checkbox" id="tolerance" name="savoir" value="5"> Tolérance
+                </label1><br>
+                <label1 for="Bienveillance">
+                    <input class="check" type="checkbox" id="impartial" name="savoir" value="6"> Impartial
+                </label1><br>
+                <label1 for="Respect">
+                    <input class="check" type="checkbox" id="travail" name="savoir" value="7"> Travail
+                </label1><br>
+                <label1 for="Juste">
+                    <input class="check" type="checkbox" id="esprit d equipe" name="savoir" value="8"> Esprit d'équipe
+                </label1><br>
+                <label1 for="Impartial">
+                    <input class="check" type="checkbox" id="autonomie" name="savoir" value="9"> Autonomie
+                </label1><br>
+                <label1 for="Travail">
+                    <input class="check" type="checkbox" id="communication" name="savoir" value="10"> Communication
+                </label1></br>
+            </form>
+
+        
+			<div class="left">
+	
+				<div class="formulaire3">
+					<h3 class="titre_encadrer1">Commentaire</h3>
+					<a> Martin s'est très<br>
+					rapidement intégré à<br>
+					notre groupe</a>
+				</div>
+
+            <p style="color: rgba(197, 214, 6, 0.479)">* Faire 4 choix maximum </p>
+            <input type="submit" value="Valider">
+        </div>
+
+        <script>
+            var checks = document.querySelectorAll(".check");
+            
+            var max = 4;
+
+            for (var i = 0; i < checks.length; i++) {
+                checks[i].onclick = selectiveCheck;
+            }
+
+            function selectiveCheck(event) {
+                var checkedChecks = document.querySelectorAll(".check:checked");
+                if (checkedChecks.length >= max + 1)
+                    return false;
+            }
+        </script>
+</body>
+
+</html>
