@@ -11,7 +11,7 @@ $_SESSION['connexion'] = 'jeune';
 // au début de la page jeune
 if($_SESSION['connexion'] == 'jeune'){ ok } else { nope}
 
-pour le référent et le consultant, il faut trouver un moyen de changer leur session quand ils arrivent sur le site par le lien de l'email
+
 
 
 pour la mise à jour de données dans bdd : 
@@ -59,20 +59,29 @@ $key='~nu!j_EBK,:XE2e{kQ!bhuQ9j]%SlF]z3L^Qy.Q[Gn?NCe&lt;BBy&gt;^LHv~1P]nq~&amp;;
 
 //au moment de l'envoi
 $id=encode($_SESSION['id'],$key);
+$num_ref=encode($data['num_ref'],$key);
 
 //envoi lien
-http://localhost:8080/page_referent_final?id=$id
+http://localhost:8080/page_referent_final?id=$id&num_ref=$num_ref
 
-// quand le référent clique sur le lien décodage identifiant
+// quand le référent clique sur le lien décodage identifiant et num_ref
 
 $id=decode($_GET['id'],$key);
+$num_ref=decode($_GET['num_ref'],$key);
+
 // vérification demande de référence
-$check = $bdd->prepare('SELECT email FROM utilisateur WHERE id = :id_user');
-$check->execute(array($id));
-$data = $check->fetch();
+$check = $bdd->prepare('SELECT COUNT(*) AS count FROM referent WHERE id = :id_user' AND num_ref= :num_ref);
+$check->execute(array($id,$num_ref));
+$row = $check->fetch();
 
-if($data['mail']!=
+if ($row['count'] > 0) {
+    $check = $bdd->prepare('SELECT * FROM utilisateur WHERE id = :id_user' AND num_ref= :num_ref);
+    $check->execute(array($id, $num_ref));
+    $data = $check->fetch();
 
+else {
+    echo 'demande de ref introuvable;
+    }
 
 ?>
 
