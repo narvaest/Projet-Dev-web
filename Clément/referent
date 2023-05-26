@@ -1,26 +1,3 @@
-idée pour la suite : (je sais pas si ça fonctionne comme ça )
-
-// sur la page d'accueil
-session_start(); 
-$_SESSION['connexion'] = 'visiteur';
-
-//lors de la connexion
-$_SESSION['connexion'] = 'jeune';
-
-
-// au début de la page jeune
-if($_SESSION['connexion'] == 'jeune'){ ok } else { nope}
-
-
-
-
-pour la mise à jour de données dans bdd : 
-
-$bdd=exec(UPDATE utilisateur SET nom='$nouveau_nom', ..., WHERE id='$id');
-
-
-pour récupération id page referent :
-
 
 <?php
 $key='~nu!j_EBK,:XE2e{kQ!bhuQ9j]%SlF]z3L^Qy.Q[Gn?NCe&lt;BBy&gt;^LHv~1P]nq~&amp;;';
