@@ -127,17 +127,6 @@ mark{
 	padding: 2%;
 }
 
-.titre_encadrer {
-	width: 100%;
-	padding-top: 3%;
-	padding-bottom: 3%;
-	text-align: right;
-	background: linear-gradient(to right, white 5%, rgb(247, 4, 194) 95%);
-	line-height: 20px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-	color: white;
-}
-
 .container2 {
 	position: relative;
     display: grid;
@@ -154,11 +143,6 @@ mark{
     border: 2px solid rgb(247, 4, 194);
 }
 
-.right {
-    grid-column: 3/3;
-	margin-left: auto;
-}
-
 .formulaireref {
 	max-width: 500px;
 	margin: 0 auto;
@@ -167,10 +151,6 @@ mark{
     padding: 4%;
 }
 
-.formulaire2 {
-	width: 100%;
-	background-color: rgb(255, 214, 245);
-}
 
 label {
 	border: none;
@@ -205,6 +185,7 @@ input[type="submit"] {
 	border: none;
 	border-radius: 5px;
 	font-size: 16px;
+	margin-left: 40%;
 	cursor: pointer;
 }
 
