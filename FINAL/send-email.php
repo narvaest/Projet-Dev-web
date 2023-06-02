@@ -9,7 +9,7 @@ use PHPMailer\PHPMailer\Exception;
 // lien mauvais il faut spécifier
 $lien = "http://localhost:8080/page_referent.html";
 $name = $_POST["nom"];
-$name_ref = $_POST["prenom"];
+$name_ref = $_POST["nom_ref"];
 $email = $_POST["mail"];
 $subject = "Demande de réference de ".$name; 
 $message = "Bonjour ".$name_ref.", ".$name." vous a envoyé une demande de réference sur Jeunes 6.4 merci de la remplir en
@@ -31,8 +31,8 @@ try {
   $mail->setFrom('jeunes.6.4@outlook.com');
   //destination
   $mail->addAddress($email);
-  $mail->Subject = $subject;
-  $mail->Body = $message;
+  $mail->Subject = utf8_decode($subject);
+  $mail->Body = utf8_decode($message);
   
 
   // Send the email
