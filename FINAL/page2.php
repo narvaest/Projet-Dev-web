@@ -3,7 +3,7 @@
     if(!isset($_SESSION['connexion']){
         $_SESSION['connexion']='visiteur';
     }
-
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
