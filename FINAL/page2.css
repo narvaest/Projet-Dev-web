@@ -161,3 +161,35 @@ img.partenaires {
   grid-row: 1;
 }
 
+/* -------------------------image--------------------------- */
+
+.container1{
+  text-align: center;
+}
+
+.image2{
+  width: 50%;
+  height: 20%;
+}
+
+/* -------------------------Footer--------------------------- */
+
+footer{
+  background: radial-gradient(circle at top 0% left 30%,rgb(247, 247, 247),lightgrey 30%,rgb(190, 190, 190));
+  text-align: center;
+  font-size: 150%;
+  padding: 3%;
+}
+
+.connect{
+  margin-right: 15%;
+}
+
+span a{
+  text-decoration: none;
+  color: black;
+}
+
+span a:hover{
+  background-color: yellow;
+}

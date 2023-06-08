@@ -80,12 +80,15 @@
             </div>
         </div>
     </div>   
-    
+    <br>
     <div class="container1">
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
+        <img src="image.png" alt="image.jpg" class="image2">
     </div>
+    
+    <footer class="connexion">
+        <span class="connect"><a href="connexion.php">Se connecter</a></span>
+        <span class="signin"><a href="inscription.php">S'inscrire</a></span>
+    </footer>
     
 </body>
 </html>
