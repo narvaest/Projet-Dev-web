@@ -3,6 +3,18 @@ session_start(); // Démarrage de la session
 
 $bdd = new PDO('sqlite:bdd.db');
 
+$query = 'CREATE TABLE IF NOT EXISTS utilisateur (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nom TEXT NOT NULL,
+        prenom TEXT NOT NULL,
+        date TEXT NOT NULL,
+        mail TEXT NOT NULL,
+        mdp TEXT NOT NULL            
+    )';
+
+// Execute the query
+$bdd->exec($query);
+
 if(isset($_POST['connexion'])){
     if (!empty($_POST['mail']) && !empty($_POST['mdp'])) {
         // On récupère les variables en évitant les injections SQL
