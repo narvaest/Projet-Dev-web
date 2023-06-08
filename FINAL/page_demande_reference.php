@@ -1,3 +1,131 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['connexion']) || $_SESSION['connexion'] != 'jeune') {
+    header('location: connexion.php');
+    exit();
+}
+
+$bdd = new PDO('sqlite:bdd.db');
+
+$query = 'CREATE TABLE IF NOT EXISTS referent (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_jeune INTEGER,
+    nom TEXT NOT NULL,
+    prenom TEXT NOT NULL,
+    duree TEXT NOT NULL,
+    mail TEXT NOT NULL,
+    milieu TEXT NOT NULL,
+    description TEXT NOT NULL,
+    confiance INTEGER,
+    bienveillance INTEGER,
+    respect INTEGER,
+    honnêteté INTEGER,
+    tolerance INTEGER,
+    impartial INTEGER,
+    travail INTEGER,
+    equipe INTEGER,
+    autonomie INTEGER,
+    communication INTEGER
+)';
+
+// Execute the query
+$bdd->exec($query);
+
+if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
+
+    if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['Duree']) && !empty($_POST['mail']) && !empty($_POST['Milieu']) && !empty($_POST['Description'])) { // aucun champ vide
+        $nom = htmlspecialchars($_POST['nom']);
+        $prenom = htmlspecialchars($_POST['prenom']);
+        $duree = htmlspecialchars($_POST['Duree']);
+        $mail = htmlspecialchars($_POST['mail']);
+        $milieu = htmlspecialchars($_POST['Milieu']);
+        $description = htmlspecialchars($_POST['Description']);
+
+        if (!empty($_POST['savoir'])) {
+            $savoir = $_POST['savoir'];
+            $confiance = '0';
+            $bienveillance = '0';
+            $respect = '0';
+            $honnêteté = '0';
+            $tolerance = '0';
+            $impartial = '0';
+            $travail = '0';
+            $equipe = '0';
+            $autonomie = '0';
+            $communication ='0';
+
+            foreach ($savoir as $item) {
+                switch ($item) {
+                    case '1':
+                        $confiance = '1';
+                        break;
+                    case '2':
+                        $bienveillance = '1';
+                        break;
+                    case '3':
+                        $respect = '1';
+                        break;
+                    case '4':
+                        $honnêteté = '1';
+                        break;
+                    case '5':
+                        $tolerance = '1';
+                        break;
+                    case '6':
+                        $impartial = '1';
+                        break;
+                    case '7':
+                        $travail = '1';
+                        break;
+                    case '8':
+                        $equipe = '1';
+                        break;
+                    case '9':
+                        $autonomie = '1';
+                        break;
+                    case '10':
+                        $communication = '1';
+                        break;
+                }
+            }
+        } else {
+            echo 'vide';
+        }
+
+        try {
+            $insert = $bdd->prepare('INSERT INTO referent (id_jeune, nom, prenom, duree, mail, milieu, description, confiance, bienveillance, respect, honnêteté, tolerance, impartial, travail, equipe, autonomie, communication) VALUES(:id_jeune, :nom, :prenom, :duree, :mail, :milieu, :description, :confiance, :bienveillance, :respect, :honnêteté, :tolerance, :impartial, :travail, :equipe, :autonomie, :communication)');
+
+            $insert->execute(array(
+                'id_jeune' => $_SESSION['id'],
+                'nom' => $nom,
+                'prenom' => $prenom,
+                'duree' => $duree,
+                'mail' => $mail,
+                'milieu' => $milieu,
+                'description' => $description,
+                'confiance' => $confiance,
+                'bienveillance' => $bienveillance,
+                'respect' => $respect,
+                'honnêteté' => $honnêteté,
+                'tolerance' => $tolerance,
+                'impartial' => $impartial,
+                'travail' => $travail,
+                'equipe' => $equipe,
+                'autonomie' => $autonomie,
+                'communication' => $communication
+            ));
+            echo "test";
+        } catch (PDOException $e) {
+            echo "Erreur => " . $e->getMessage();
+            error_log($e->getMessage());
+        }
+    } else {
+        echo 'Merci de remplir tous les champs.';
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
