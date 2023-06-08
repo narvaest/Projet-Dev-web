@@ -48,7 +48,7 @@ header{
 
 .navi li{
     display: block; 
-    padding : 18%;
+    padding : 30px;
     text-align: center;
     text-transform: uppercase;
 }
@@ -134,18 +134,6 @@ body {
 }
 
 
-
-.titre_encadrer {
-	width: 100%;
-	padding-top: 3%;
-	padding-bottom: 3%;
-	text-align: right;
-	background: linear-gradient(to right, white 5%, rgb(247, 4, 194) 95%);
-	line-height: 20px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-	color: white;
-}
-
 .container2 {
 	position: relative;
 	display: flex;
@@ -158,21 +146,12 @@ body {
     border: 2px solid rgb(247, 4, 194);
 }
 
-.right {
-	margin-left: auto;
-}
 
 .formulaire1 {
 	max-width: 500px;
 	margin: 0 auto;
 	background-color: #ffffff;
-    margin-bottom: 10px;
     padding: 4%;
-}
-
-.formulaire2 {
-	width: 100%;
-	background-color: rgb(255, 214, 245);
 }
 
 label {
@@ -207,6 +186,7 @@ input[type="submit"] {
 	border-radius: 5px;
 	font-size: 16px;
 	cursor: pointer;
+    text-align: center;
 }
 
 input[type="submit"]:hover {
