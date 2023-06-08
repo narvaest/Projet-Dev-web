@@ -1,7 +1,7 @@
 <?php
 $bdd = new PDO('sqlite:bdd.db');
 
-$query = 'CREATE TABLE utilisateur (
+$query = 'CREATE TABLE IF NOT EXISTS utilisateur (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             nom TEXT NOT NULL,
             prenom TEXT NOT NULL,
