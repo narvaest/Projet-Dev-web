@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['connexion']) || $_SESSION['connexion'] != 'jeune') {
+if ($_SESSION['connexion'] != 'jeune') {
     header('location: connexion.php');
     exit();
 }
