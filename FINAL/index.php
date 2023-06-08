@@ -23,7 +23,7 @@
             la promesse d'une richesse !
         </p>
         <div id="my-div">
-            <a href="page2.html" class="fill-div">ENTRER</a>
+            <a href="page2.php" class="fill-div">ENTRER</a>
         </div>
     </div>
 </body>
