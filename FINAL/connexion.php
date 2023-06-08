@@ -41,7 +41,7 @@ if(isset($_POST['connexion'])){
                     $_SESSION['date'] = $data['date'];
 
                     // on redirige l'utilisateur vers la page jeune
-                    header('Location: jeune.php');
+                    header('Location: page_jeune_final.php');
                     die();
                 } else {
                     $error = 'Mot de passe incorrect.';
