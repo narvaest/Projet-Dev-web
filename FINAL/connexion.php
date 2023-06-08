@@ -51,6 +51,8 @@ if(isset($_POST['connexion'])){
                     $_SESSION['prenom'] = $data['prenom'];
                     $_SESSION['mail'] = $data['mail'];
                     $_SESSION['date'] = $data['date'];
+                        
+                    $_SESSION['connexion']='jeune';
 
                     // on redirige l'utilisateur vers la page jeune
                     header('Location: page_jeune_final.php');
