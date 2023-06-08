@@ -184,7 +184,7 @@
 
                         <li>
 
-                            <a href="page_demande_reference.php" title="réference">Modification du profil</a>
+                            <a href="page_demande_reference.php" title="réference">Demande de référence</a>
 
                         </li>
 
