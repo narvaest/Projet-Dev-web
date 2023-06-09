@@ -194,7 +194,7 @@ $bdd = new PDO('sqlite:bdd.db');
 
             echo "<td>".$row['validation']."</td>";
 
-            echo "<td><input type='checkbox' name='references[]' value='".$row['id']."'></td>";
+            if($row['validation']=='validé'){echo "<td><input type='checkbox' name='references[]' value='".$row['id']."'></td>";}
 
             echo "</tr>";
 
