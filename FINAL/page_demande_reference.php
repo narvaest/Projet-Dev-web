@@ -17,6 +17,7 @@ $query = 'CREATE TABLE IF NOT EXISTS referent (
     mail TEXT NOT NULL,
     milieu TEXT NOT NULL,
     description TEXT NOT NULL,
+    validation TEXT NOT NULL,
     confiance INTEGER,
     bienveillance INTEGER,
     respect INTEGER,
@@ -42,18 +43,22 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
         $milieu = htmlspecialchars($_POST['Milieu']);
         $description = htmlspecialchars($_POST['Description']);
 
+        $savoir = $_POST['savoir'];
+        $confiance = '0';
+        $bienveillance = '0';
+        $respect = '0';
+        $honnetete = '0';
+        $tolerance = '0';
+        $impartial = '0';
+        $travail = '0';
+        $equipe = '0';
+        $autonomie = '0';
+        $communication ='0';
+
+        $validation = "non validé";
+
         if (!empty($_POST['savoir'])) {
-            $savoir = $_POST['savoir'];
-            $confiance = '0';
-            $bienveillance = '0';
-            $respect = '0';
-            $honnetete = '0';
-            $tolerance = '0';
-            $impartial = '0';
-            $travail = '0';
-            $equipe = '0';
-            $autonomie = '0';
-            $communication ='0';
+
 
             foreach ($savoir as $item) {
                 switch ($item) {
@@ -90,11 +95,11 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
                 }
             }
         } else {
-            echo 'vide';
+            echo 'pas de compétence/savoir être validé';
         }
 
         try {
-            $insert = $bdd->prepare('INSERT INTO referent (id_jeune, nom, prenom, duree, mail, milieu, description, confiance, bienveillance, respect, honnetete, tolerance, impartial, travail, equipe, autonomie, communication) VALUES(:id_jeune, :nom, :prenom, :duree, :mail, :milieu, :description, :confiance, :bienveillance, :respect, :honnetete, :tolerance, :impartial, :travail, :equipe, :autonomie, :communication)');
+            $insert = $bdd->prepare('INSERT INTO referent (id_jeune, nom, prenom, duree, mail, milieu, description, validation, confiance, bienveillance, respect, honnetete, tolerance, impartial, travail, equipe, autonomie, communication) VALUES(:id_jeune, :nom, :prenom, :duree, :mail, :milieu, :description, :validation, :confiance, :bienveillance, :respect, :honnetete, :tolerance, :impartial, :travail, :equipe, :autonomie, :communication)');
 
             $insert->bindValue(':id_jeune', $_SESSION['id']);
             $insert->bindValue(':nom', $nom);
@@ -103,6 +108,7 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
             $insert->bindValue(':mail', $mail);
             $insert->bindValue(':milieu', $milieu);
             $insert->bindValue(':description', $description);
+            $insert->bindValue(':validation', $validation);
             $insert->bindValue(':confiance', $confiance);
             $insert->bindValue(':bienveillance', $bienveillance);
             $insert->bindValue(':respect', $respect);
@@ -162,13 +168,13 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
                 <li><a href="" title="aller a jeune"><mark>Jeune</mark></a>
                     <ul class="sub-menu">
                         <li>
-                            <a href="page_jeune_final.php" title="monprofil">Mon profil</a>
+                            <a href="page_jeune_final.html" title="monprofil">Mon profil</a>
                         </li>
                         <li>
-                            <a href="page_demande_reference.php" title="réference">Demande de référence</a>
+                            <a href="page_demande_reference.html" title="réference">Demande de référence</a>
                         </li>
                         <li>
-                            <a href="page_liste_reference.php" title="liste">Liste de référence</a>
+                            <a href="page_liste_reference.html" title="liste">Liste de référence</a>
                         </li>
                     </ul>
                 </li>
