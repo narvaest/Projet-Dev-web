@@ -80,51 +80,68 @@ if (isset($_POST['inscription'])) {
 
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <title>Création de compte</title>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="inscription.css">
-    </head>
-    <body>
-        <header role="banner">
-            <div class="container">
-                <div name="logo" id="logo">
-                    <img src="logo2.png" alt="logo.jpg" class="image">
-                </div>
-                <div class="text">
-                    <div class="titre" id="bigtext">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="inscription.css">    
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    <title>Inscription</title>
+    
+</head>
+<body>
+    <header role="banner">
+        <div class="container">
+            <div name="logo" id="logo">
+                <img src="logo2.png" alt="logo.jpg" class="image">
+            </div>
+            <div class="text">
+                <div class="titre" id="bigtext">
                     S'inscrire
-                    </div>  
-                    <div class="titre" id="soustexte">
+                </div>  
+                <div class="titre" id="soustexte">
                     Inscription à votre compte Jeune
-                    </div>          
-                </div>
-            </div>   
-        </header>    
+                </div>          
+            </div>
+        </div>   
+    </header>    
+ 
         <div class="formulaire">
             <form action="" method="POST">
-                <label for="nom">Votre nom</label>
-                <input id="nom" name="nom" type="text" placeholder="Entrez votre nom">
+                <div class="align-label" id="top">
+                    <label for="nom">Votre nom</label>
+                    <input id="nom" name="nom" type="text" placeholder="Entrez votre nom">
+                </div>
                 <br>
-                <label for="prenom">Votre prénom</label>
-                <input id="prenom" name="prenom" type="text" placeholder="Entrez votre prénom">
+                <div class="align-label">
+                    <label for="prenom">Votre prénom</label>
+                    <input id="prenom" name="prenom" type="text" placeholder="Entrez votre prénom">
+                </div>
                 <br>
-                <label for="date">Votre date de naissance</label>
-                <input id="date" name="date" type="date">
+                <div class="align-label">
+                    <label for="date">Votre date de naissance</label>
+                    <input id="date" name="date" type="date">
+                </div>
                 <br>
-                <label for="mail">Votre adresse email</label>
-                <input id="mail" name="mail" type="email" placeholder="Entrez votre email">
+                <div class="align-label">
+                    <label for="mail">Votre adresse email</label>
+                    <input id="mail" name="mail" type="email" placeholder="Entrez votre email">
+                </div>
                 <br>
-                <label for="mdp">Mot de passe</label>
-                <input id="mdp" name="mdp" type="password">
-                <label for="conf_mdp">Confirmation du mot de passe</label>
-                <input id="conf_mdp" name="conf_mdp" type="password">
+                <div class="align-label">
+                    <label for="mdp">Mot de passe</label>
+                    <input id="mdp" name="mdp" type="password">
+                </div>
                 <br>
-                <input type="submit" value="Inscription" name="inscription">
+                <div class="align-label">
+                    <label for="conf_mdp">Confirmation du mot de passe</label>
+                    <input id="conf_mdp" name="conf_mdp" type="password">
+                </div>
+                <br>
+                <div class="button">
+                   <input type="submit" value="Inscription" name="inscription">
+                </div>
             </form>
-            <img src="fondtest.jpg" class="image2">
         </div>
         <?php echo $errorMessage; ?>
     </body>
