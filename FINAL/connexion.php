@@ -46,7 +46,7 @@ if(isset($_POST['connexion'])){
                     // on redirige vers jeune.php
 
                     //stockage des données utilisateur dans la session
-                    $_SESSION['id'] = $data['ID'];
+                    $_SESSION['id'] = $data['id'];
                     $_SESSION['nom'] = $data['nom'];
                     $_SESSION['prenom'] = $data['prenom'];
                     $_SESSION['mail'] = $data['mail'];
