@@ -82,7 +82,7 @@
 
 
 
-        $bdd->exec("UPDATE referent SET nom='{$ref['nom']}', prenom='{$ref['prenom']}', date='{$ref['date']}', mail='{$ref['mail']}', duree='{$ref['duree']}', milieu='{$ref['milieu']}', validation='$validation'  WHERE id_jeune = :id_jeune AND id = :num_ref");
+        $bdd->exec("UPDATE referent SET nom='{$ref['nom']}', prenom='{$ref['prenom']}', date='{$ref['date']}', mail='{$ref['mail']}', duree='{$ref['duree']}', milieu='{$ref['milieu']}', validation='$validation', commentaire='$commentaire'  WHERE id_jeune = :id_jeune AND id = :num_ref");
 
         $bdd->exec();
 
