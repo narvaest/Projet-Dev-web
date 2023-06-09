@@ -20,7 +20,7 @@ $query = 'CREATE TABLE IF NOT EXISTS referent (
     confiance INTEGER,
     bienveillance INTEGER,
     respect INTEGER,
-    honnêteté INTEGER,
+    honnetete INTEGER,
     tolerance INTEGER,
     impartial INTEGER,
     travail INTEGER,
@@ -47,7 +47,7 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
             $confiance = '0';
             $bienveillance = '0';
             $respect = '0';
-            $honnêteté = '0';
+            $honnetete = '0';
             $tolerance = '0';
             $impartial = '0';
             $travail = '0';
@@ -67,7 +67,7 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
                         $respect = '1';
                         break;
                     case '4':
-                        $honnêteté = '1';
+                        $honnetete = '1';
                         break;
                     case '5':
                         $tolerance = '1';
@@ -94,40 +94,42 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
         }
 
         try {
-            $insert = $bdd->prepare('INSERT INTO referent (id_jeune, nom, prenom, duree, mail, milieu, description, confiance, bienveillance, respect, honnêteté, tolerance, impartial, travail, equipe, autonomie, communication) VALUES(:id_jeune, :nom, :prenom, :duree, :mail, :milieu, :description, :confiance, :bienveillance, :respect, :honnêteté, :tolerance, :impartial, :travail, :equipe, :autonomie, :communication)');
+            $insert = $bdd->prepare('INSERT INTO referent (id_jeune, nom, prenom, duree, mail, milieu, description, confiance, bienveillance, respect, honnetete, tolerance, impartial, travail, equipe, autonomie, communication) VALUES(:id_jeune, :nom, :prenom, :duree, :mail, :milieu, :description, :confiance, :bienveillance, :respect, :honnetete, :tolerance, :impartial, :travail, :equipe, :autonomie, :communication)');
 
-            $insert->execute(array(
-                'id_jeune' => $_SESSION['id'],
-                'nom' => $nom,
-                'prenom' => $prenom,
-                'duree' => $duree,
-                'mail' => $mail,
-                'milieu' => $milieu,
-                'description' => $description,
-                'confiance' => $confiance,
-                'bienveillance' => $bienveillance,
-                'respect' => $respect,
-                'honnêteté' => $honnêteté,
-                'tolerance' => $tolerance,
-                'impartial' => $impartial,
-                'travail' => $travail,
-                'equipe' => $equipe,
-                'autonomie' => $autonomie,
-                'communication' => $communication
-            ));
-            echo "test";
-        } catch (PDOException $e) {
-            echo "Erreur => " . $e->getMessage();
-            error_log($e->getMessage());
+            $insert->bindValue(':id_jeune', $_SESSION['id']);
+            $insert->bindValue(':nom', $nom);
+            $insert->bindValue(':prenom', $prenom);
+            $insert->bindValue(':duree', $duree);
+            $insert->bindValue(':mail', $mail);
+            $insert->bindValue(':milieu', $milieu);
+            $insert->bindValue(':description', $description);
+            $insert->bindValue(':confiance', $confiance);
+            $insert->bindValue(':bienveillance', $bienveillance);
+            $insert->bindValue(':respect', $respect);
+            $insert->bindValue(':honnetete', $honnetete);
+            $insert->bindValue(':tolerance', $tolerance);
+            $insert->bindValue(':impartial', $impartial);
+            $insert->bindValue(':travail', $travail);
+            $insert->bindValue(':equipe', $equipe);
+            $insert->bindValue(':autonomie', $autonomie);
+            $insert->bindValue(':communication', $communication);
+
+            $insert->execute(); // ligne 99
+
+            echo 'Votre demande a bien été enregistrée.';
+        } catch (Exception $e) {
+            die('Erreur : ' . $e->getMessage());
         }
     } else {
-        echo 'Merci de remplir tous les champs.';
+        echo 'Veuillez remplir tous les champs obligatoires.';
     }
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -135,8 +137,8 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
     <link rel="stylesheet" type="text/css" href="page_demande_reference.css">
     <link rel="stylesheet" type="text/css" href="reset.css">
     <title>Jeunes 6.4</title>
-    
 </head>
+
 <body>
     <header role="banner">
         <div class="container">
@@ -145,52 +147,48 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
             </div>
             <div class="text">
                 <div class="titre" id="bigtext">
-                JEUNE
-                </div>  
+                    JEUNE
+                </div>
                 <div class="titre" id="soustexte">
-                Je donne de la valeur à mon engagement
-                </div>          
+                    Je donne de la valeur à mon engagement
+                </div>
             </div>
-        </div>   
-    </header>    
+        </div>
+    </header>
 
-    <!--------------------------------------->
     <div class="menunav">
         <div class="nav">
             <ul class="navi">
                 <li><a href="" title="aller a jeune"><mark>Jeune</mark></a>
                     <ul class="sub-menu">
                         <li>
-                            <a href="page_jeune_final.html" title="monprofil">Mon profil</a>
+                            <a href="page_jeune_final.php" title="monprofil">Mon profil</a>
                         </li>
                         <li>
-                            <a href="page_demande_reference.html" title="réference">Demande de référence</a>
+                            <a href="page_demande_reference.php" title="réference">Demande de référence</a>
                         </li>
                         <li>
-                            <a href="page_liste_reference.html" title="liste">Liste de référence</a>
+                            <a href="page_liste_reference.php" title="liste">Liste de référence</a>
                         </li>
                     </ul>
                 </li>
                 <li>Référent</li>
                 <li>Consultant</li>
                 <li>Partenaire</li>
-                </ul>
+            </ul>
         </div>
     </div>
 
-        <!--------------------------------------->
-    <br>
     <div class="subtitle">
         <h1>Demande de référence</h1>
     </div>
 
-     <!--------------------------------------->
     <div class="container2">
         <div class="middle">
-            <form class="formulaireref" action="#" method="post">
+            <form class="formulaireref" action="" method="POST">
                 <ul>
                     <li>
-                        <label for="Nom">Nom du référent</label>
+                        <label for="nom">Nom du référent</label>
                         <input type="text" id="nom" name="nom" required>
                     </li>
                     <li>
@@ -214,72 +212,46 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
                         <input type="text" id="Description" name="Description" required>
                     </li>
                 </ul>
-                <input type="submit" value="Valider">
+
+                <h3 class="titre_encadrer">Je suis*</h3>
+                <label for="confiance">
+                    <input class="check" type="checkbox" id="confiance" name="savoir[]" value="1"> Confiance
+                </label>
+                <br>
+                <label for="bienveillance">
+                    <input class="check" type="checkbox" id="bienveillance" name="savoir[]" value="2"> Bienveillance
+                </label>
+                <br>
+                <label for="respect">
+                    <input class="check" type="checkbox" id="respect" name="savoir[]" value="3"> Respect
+                </label>
+                <br>
+                <label for="honnêteté">
+                    <input class="check" type="checkbox" id="honnêteté" name="savoir[]" value="4"> Honnêteté
+                </label>
+                <br>
+                <label for="tolerance">
+                    <input class="check" type="checkbox" id="tolerance" name="savoir[]" value="5"> Tolérance
+                </label>
+                <br>
+                <label for="Juste">
+                    <input class="check" type="checkbox" id="Juste" name="savoir[]" value="6"> Juste
+                </label>
+                <br>
+                <label for="Impartial">
+                    <input class="check" type="checkbox" id="Impartial" name="savoir[]" value="7"> Impartial
+                </label>
+                <br>
+                <label for="Travail">
+                    <input class="check" type="checkbox" id="Travail" name="savoir[]" value="8"> Travail
+                </label>
+                </br>
+
+                <label for="valider">Valider</label><input type="submit" name="Valider" value="Valider">
+
             </form>
-            
         </div>
-
-            <!--------------------------------------->
-            <div class="right">
-
-                <h2 style="color: rgb(247, 4, 194)">MES SAVOIRS ETRE </h2>
-    
-                <form class="formulaire2">
-    
-                    <h3 class="titre_encadrer">Je suis*</h3>
-                    <label for="confiance">
-                        <input class="check" type="checkbox" id="confiance" name="savoir" value="1"> Confiance
-                    </label><br>
-                    <label for="bienveillance">
-                        <input class="check" type="checkbox" id="bienveillance" name="savoir" value="2"> Bienveillance
-                    </label><br>
-                    <label for="respect">
-                        <input class="check" type="checkbox" id="respect" name="savoir" value="3"> Respect
-                    </label><br>
-                    <label for="honnetete">
-                        <input class="check" type="checkbox" id="honnetete" name="savoir" value="4"> Honnêteté
-                    </label><br>
-                    <label for="tolerance">
-                        <input class="check" type="checkbox" id="tolerance" name="savoir" value="5"> Tolérance
-                    </label><br>
-                    <label for="impartial">
-                        <input class="check" type="checkbox" id="impartial" name="savoir" value="6"> Impartial
-                    </label><br>
-                    <label for="travail">
-                        <input class="check" type="checkbox" id="travail" name="savoir" value="7"> Travail
-                    </label><br>
-                    <label for="esprit d equipe">
-                        <input class="check" type="checkbox" id="esprit d equipe" name="savoir" value="8"> Esprit d'équipe
-                    </label><br>
-                    <label for="autonomie">
-                        <input class="check" type="checkbox" id="autonomie" name="savoir" value="9"> Autonomie
-                    </label><br>
-                    <label for="communication">
-                        <input class="check" type="checkbox" id="communication" name="savoir" value="10"> Communication
-                    </label></br>
-                </form>
-    
-                <p style="color: rgb(247, 4, 194)">* Faire 4 choix maximum </p>
-                <input type="submit" value="Valider">
-            </div>
-
-
-    </div>  
-    <script>
-        var checks = document.querySelectorAll(".check");
-        
-        var max = 4;
-
-        for (var i = 0; i < checks.length; i++) {
-            checks[i].onclick = selectiveCheck;
-        }
-
-        function selectiveCheck(event) {
-            var checkedChecks = document.querySelectorAll(".check:checked");
-            if (checkedChecks.length >= max + 1)
-                return false;
-        }
-    </script>
-
+    </div>
 </body>
+
 </html>
