@@ -79,22 +79,50 @@ if(isset($_POST['connexion'])){
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="stylesheet" type="text/css" href="connexion.css">
+        <link rel="stylesheet" type="text/css" href="reset.css">
+        <title>Connection</title>
+    
     </head>
     <body>
-        <form action="" method="POST">
-            
-            <label for="mail">Votre adresse email</label>
-            <input id="mail" name="mail" type="email" placeholder="Entrez votre email">
-
-            <br>
-
-            <label for="mdp">Mot de passe</label>
-            <input id="mdp" name="mdp" type="password">
-            <br>
-
-            <input type="submit" value="Connexion" name="connexion">
-        </form>
-        <button onclick="self.location.href='inscription.php'">Inscription</button>
+        <header role="banner">
+            <div class="container">
+                <div name="logo" id="logo">
+                    <img src="logo2.png" alt="logo.jpg" class="image">
+                </div>
+                <div class="text">
+                    <div class="titre" id="bigtext">
+                        Se connecter
+                    </div>  
+                    <div class="titre" id="soustexte">
+                        Connexion à votre compte Jeune
+                    </div>          
+                </div>
+            </div>   
+        </header>    
+        <div class="formulaire">
+            <div class="h1">Entrer vos infomations :</div>
+            <form action="" method="POST">
+                <div class="align-label" id="top">
+                    <label for="mail">Votre adresse email :</label>
+                    <input id="mail" name="mail" type="email" placeholder="Entrez votre email">
+                </div>
+                <br>
+                <div class="align-label">
+                    <label for="mdp">Mot de passe :</label>
+                    <input id="mdp" name="mdp" type="password">
+                </div>
+                <br>
+                <div class="button">
+                    <input type="submit" value="Connexion" name="connexion">
+                </div>
+            </form>
+        </div>
+        <div class="inscription">
+            <div class="h1">Si vous n'avez pas de compte, inscrivez vous ! : </div>
+            <div class="button">
+                <button onclick="self.location.href='inscription.php'">Inscription</button>
+            </div>
+        </div>
         <?php echo $error; ?>
     </body>
 </html>

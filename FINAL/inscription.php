@@ -109,32 +109,32 @@ if (isset($_POST['inscription'])) {
         <div class="formulaire">
             <form action="" method="POST">
                 <div class="align-label" id="top">
-                    <label for="nom">Votre nom</label>
+                    <label for="nom">Votre nom : </label>
                     <input id="nom" name="nom" type="text" placeholder="Entrez votre nom">
                 </div>
                 <br>
                 <div class="align-label">
-                    <label for="prenom">Votre prénom</label>
+                    <label for="prenom">Votre prénom :</label>
                     <input id="prenom" name="prenom" type="text" placeholder="Entrez votre prénom">
                 </div>
                 <br>
                 <div class="align-label">
-                    <label for="date">Votre date de naissance</label>
+                    <label for="date">Votre date de naissance : </label>
                     <input id="date" name="date" type="date">
                 </div>
                 <br>
                 <div class="align-label">
-                    <label for="mail">Votre adresse email</label>
+                    <label for="mail">Votre adresse email :</label>
                     <input id="mail" name="mail" type="email" placeholder="Entrez votre email">
                 </div>
                 <br>
                 <div class="align-label">
-                    <label for="mdp">Mot de passe</label>
+                    <label for="mdp">Mot de passe :</label>
                     <input id="mdp" name="mdp" type="password">
                 </div>
                 <br>
                 <div class="align-label">
-                    <label for="conf_mdp">Confirmation du mot de passe</label>
+                    <label for="conf_mdp">Confirmation du mot de passe :</label>
                     <input id="conf_mdp" name="conf_mdp" type="password">
                 </div>
                 <br>
