@@ -178,7 +178,7 @@
 
                         <li>
 
-                            <a href="page_jeune_final.html" title="monprofil">Mon profil</a>
+                            <a href="page_jeune_final.php" title="monprofil">Mon profil</a>
 
                         </li>
 
@@ -190,7 +190,7 @@
 
                         <li>
 
-                            <a href="page_liste_reference.html" title="liste">Liste de référence</a>
+                            <a href="page_liste_reference.php" title="liste">Liste de référence</a>
 
                         </li>
 
