@@ -119,3 +119,52 @@ mark{
     display: block;
 	z-index:10;
 }
+
+.h1{
+    text-decoration: underline;
+    color:rgb(247, 4, 194);
+    margin-top: 2%;
+    font-size: 130%;
+    font-weight: bold;
+}
+
+.table{
+    margin-top: 1%;
+    margin-bottom: 1%;
+    font-size: 110%;
+}
+
+.table th{
+    padding: 1%;
+    border: 1px solid rgb(247, 4, 194);
+    color : rgb(247, 4, 194);
+    font-weight: bold; 
+    text-align: left;
+}
+
+.table tr{
+    border: 2px solid rgb(247, 4, 194);
+}
+
+.table td{
+    border: 1px dotted rgb(247, 4, 194);
+    padding: 0.5%;
+    text-align: left;
+}
+
+.long{
+    width: 5%;
+}
+
+.mid{
+    width: 2%;
+}
+
+.short{
+    width: 0.5%;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f2f2f2;
+}

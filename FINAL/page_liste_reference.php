@@ -132,29 +132,24 @@ $bdd = new PDO('sqlite:bdd.db');
 
 
 
-    <table>
+<table class="table">
 
-        <tr>
+    <tr>
+        <th class="mid">Nom</th>
 
-            <th>ID</th>
+        <th class="mid">Prénom</th>
 
-            <th>Nom</th>
+        <th class="mid">Durée</th>
 
-            <th>Prénom</th>
+        <th class="long">Email</th>
 
-            <th>Durée</th>
+        <th class="mid">Milieu</th>
 
-            <th>Email</th>
+        <th class="short">Validation</th>
 
-            <th>Milieu</th>
+        <th class="short">Sélectionner</th>
 
-            <th>Description</th>
-
-            <th>Validation</th>
-
-            <th>Sélectionner</th>
-
-        </tr>
+    </tr>
 
 
 
@@ -178,8 +173,6 @@ $bdd = new PDO('sqlite:bdd.db');
 
             echo "<tr>";
 
-            echo "<td>".$row['id']."</td>";
-
             echo "<td>".$row['nom']."</td>";
 
             echo "<td>".$row['prenom']."</td>";
@@ -189,8 +182,6 @@ $bdd = new PDO('sqlite:bdd.db');
             echo "<td>".$row['mail']."</td>";
 
             echo "<td>".$row['milieu']."</td>";
-
-            echo "<td>".$row['description']."</td>";
 
             echo "<td>".$row['validation']."</td>";
 
@@ -215,10 +206,6 @@ $bdd = new PDO('sqlite:bdd.db');
     <input type="submit" name="valider" value="Valider">
 
 </form>
-
-        
-
-    </table>
 
 </body>
 
