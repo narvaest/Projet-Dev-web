@@ -1,5 +1,9 @@
 <?php
 session_start();
+if ($_SESSION['connexion'] != 'jeune') {
+    header('location: connexion.php');
+    exit();
+}
 require 'vendor/autoload.php';
 
 
@@ -29,10 +33,7 @@ $id = encode($_SESSION['id'], $key);
 $num_ref = encode($data['num_ref'], $key);
 
 
-if ($_SESSION['connexion'] != 'jeune') {
-    header('location: connexion.php');
-    exit();
-}
+
 
 $bdd = new PDO('sqlite:bdd.db');
 
