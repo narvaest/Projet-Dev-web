@@ -134,7 +134,7 @@ mark{
     grid-gap: 10px;
     grid-auto-rows: minmax(100px, auto);
 	flex-direction: row;
-	margin-left: 5%;
+    margin-left: 27%;
 }
 
 .middle {
@@ -142,6 +142,14 @@ mark{
     grid-column: 2/5;
     width: 45%;
     border: 3px solid rgb(247, 4, 194);
+}
+
+.right {
+    grid-column: 5/5;
+    position: absolute;
+    right: 65px;
+    width: 15%;
+	background-color: rgb(255, 214, 245);
 }
 
 .formulaireref {
@@ -177,13 +185,7 @@ body {
 	background-color: #f2f2f2;
 }
 
-.right {
-	margin-left: auto;
-    margin-right: 20%;
-    position: absolute;
-    width: 15%;
-	background-color: rgb(255, 214, 245);
-}
+
 
 .titre_encadrer {
 	width: 100%;

@@ -184,7 +184,7 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
     </div>
 
     <div class="container2">
-        <form class="formulaireref" action="#" method="post"></form>
+        <form class="formulaireref" action="#" method="post">
             <div class="middle">
                 <br>
                 <ul>
