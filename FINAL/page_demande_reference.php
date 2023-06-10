@@ -223,37 +223,47 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
 
                 <h2 style="color: rgb(247, 4, 194)">MES SAVOIRS ETRE </h2>
     
-                    <h3 class="titre_encadrer">Je suis*</h3>
-                    <label for="confiance">
-                        <input class="check" type="checkbox" id="confiance" name="savoir" value="1"> Confiance
-                    </label><br>
-                    <label for="bienveillance">
-                        <input class="check" type="checkbox" id="bienveillance" name="savoir" value="2"> Bienveillance
-                    </label><br>
-                    <label for="respect">
-                        <input class="check" type="checkbox" id="respect" name="savoir" value="3"> Respect
-                    </label><br>
-                    <label for="honnetete">
-                        <input class="check" type="checkbox" id="honnetete" name="savoir" value="4"> Honnêteté
-                    </label><br>
-                    <label for="tolerance">
-                        <input class="check" type="checkbox" id="tolerance" name="savoir" value="5"> Tolérance
-                    </label><br>
-                    <label for="impartial">
-                        <input class="check" type="checkbox" id="impartial" name="savoir" value="6"> Impartial
-                    </label><br>
-                    <label for="travail">
-                        <input class="check" type="checkbox" id="travail" name="savoir" value="7"> Travail
-                    </label><br>
-                    <label for="esprit d equipe">
-                        <input class="check" type="checkbox" id="esprit d equipe" name="savoir" value="8"> Esprit d'équipe
-                    </label><br>
-                    <label for="autonomie">
-                        <input class="check" type="checkbox" id="autonomie" name="savoir" value="9"> Autonomie
-                    </label><br>
-                    <label for="communication">
-                        <input class="check" type="checkbox" id="communication" name="savoir" value="10"> Communication
-                    </label></br>
+                <h3 class="titre_encadrer">Je suis*</h3>
+                <label for="confiance">
+                    <input class="check" type="checkbox" id="confiance" name="savoir[]" value="1"> Confiance
+                </label>
+                <br>
+                <label for="bienveillance">
+                    <input class="check" type="checkbox" id="bienveillance" name="savoir[]" value="2"> Bienveillance
+                </label>
+                <br>
+                <label for="respect">
+                    <input class="check" type="checkbox" id="respect" name="savoir[]" value="3"> Respect
+                </label>
+                <br>
+                <label for="honnêteté">
+                    <input class="check" type="checkbox" id="honnêteté" name="savoir[]" value="4"> Honnêteté
+                </label>
+                <br>
+                <label for="tolerance">
+                    <input class="check" type="checkbox" id="tolerance" name="savoir[]" value="5"> Tolérance
+                </label>
+                <br>
+                <label for="Impartial">
+                    <input class="check" type="checkbox" id="Impartial" name="savoir[]" value="6"> Impartial
+                </label>
+                <br>
+                <label for="Travail">
+                    <input class="check" type="checkbox" id="Travail" name="savoir[]" value="7"> Travail
+                </label>
+                </br>
+                <label for="equipe">
+                    <input class="check" type="checkbox" id="equipe" name="savoir[]" value="8"> Travail en équipe
+                </label>
+                </br>
+                <label for="Autonomie">
+                    <input class="check" type="checkbox" id="Autonomie" name="savoir[]" value="9"> Autonomie
+                </label>
+                <br>
+                <label for="Communication">
+                    <input class="check" type="checkbox" id="Communication" name="savoir[]" value="10"> Communication
+                </label>
+                <br>
     
                 <p style="color: rgb(247, 4, 194)">* Faire 4 choix maximum </p>
             </div>
