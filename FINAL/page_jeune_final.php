@@ -293,6 +293,12 @@ if($errorMessage!=''){
         </div>
 
     </div>
+    <div class="deconnection">
+        <div class="msg">Si vous voulez vous déconnectez :</div>
+        <div class="button">
+            <button>Se déconnecter</button>
+        </div>
+    </div>
 
 </body>
 

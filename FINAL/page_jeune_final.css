@@ -178,7 +178,7 @@ textarea {
 	width: 50%;
 }
 
-input[type="submit"] {
+input[type="submit"], button {
 	background-color: rgb(247, 4, 194);
 	color: #fff;
 	padding: 10px 20px;
@@ -189,6 +189,24 @@ input[type="submit"] {
     text-align: center;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover , button:hover{
 	background-color: black;
+}
+
+.msg{
+    color:rgb(247, 4, 194);
+    margin-left: 1%;
+    text-decoration: underline;
+    font-size: 130%;
+    font-weight: bold;
+}
+
+.deconnection{
+    margin-top: 20%;
+    margin-left: 5%;
+    width: 25%;
+}
+
+.button{
+    padding: 10px 20px;
 }
