@@ -213,7 +213,7 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
                         <input type="text" id="Description" name="Description" required>
                     </li>
                 </ul>
-                <input type="submit" value="Valider">
+                <input type="submit" name="Valider" value="Valider">
                 <br><br>
             
             </div>
