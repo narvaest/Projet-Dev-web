@@ -26,7 +26,8 @@ $query = 'CREATE TABLE IF NOT EXISTS referent (
     travail INTEGER,
     equipe INTEGER,
     autonomie INTEGER,
-    communication INTEGER
+    communication INTEGER,
+    valid TEXT NOT NULL
 )';
 
 // Execute the query
@@ -42,6 +43,8 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
         $milieu = htmlspecialchars($_POST['Milieu']);
         $description = htmlspecialchars($_POST['Description']);
 
+        $valid='non validé';
+
         if (!empty($_POST['savoir'])) {
             $savoir = $_POST['savoir'];
             $confiance = '0';
@@ -54,6 +57,8 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
             $equipe = '0';
             $autonomie = '0';
             $communication ='0';
+
+            
 
             foreach ($savoir as $item) {
                 switch ($item) {
@@ -94,7 +99,7 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
         }
 
         try {
-            $insert = $bdd->prepare('INSERT INTO referent (id_jeune, nom, prenom, duree, mail, milieu, description, confiance, bienveillance, respect, honnetete, tolerance, impartial, travail, equipe, autonomie, communication) VALUES(:id_jeune, :nom, :prenom, :duree, :mail, :milieu, :description, :confiance, :bienveillance, :respect, :honnetete, :tolerance, :impartial, :travail, :equipe, :autonomie, :communication)');
+            $insert = $bdd->prepare('INSERT INTO referent (id_jeune, nom, prenom, duree, mail, milieu, description, confiance, bienveillance, respect, honnetete, tolerance, impartial, travail, equipe, autonomie, communication, valid) VALUES(:id_jeune, :nom, :prenom, :duree, :mail, :milieu, :description, :confiance, :bienveillance, :respect, :honnetete, :tolerance, :impartial, :travail, :equipe, :autonomie, :communication, :valid)');
 
             $insert->bindValue(':id_jeune', $_SESSION['id']);
             $insert->bindValue(':nom', $nom);
@@ -113,8 +118,9 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
             $insert->bindValue(':equipe', $equipe);
             $insert->bindValue(':autonomie', $autonomie);
             $insert->bindValue(':communication', $communication);
+            $insert->bindValue(':valid', $valid);
 
-            $insert->execute(); // ligne 99
+            $insert->execute(); 
 
             echo 'Votre demande a bien été enregistrée.';
         } catch (Exception $e) {
