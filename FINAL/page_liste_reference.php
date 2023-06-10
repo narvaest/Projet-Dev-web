@@ -201,6 +201,10 @@ $bdd = new PDO('sqlite:bdd.db');
 
     </table>
 
+    <div class="mail">
+        <label for="mail">MAIL du consultant pour les références séléctionnés:</label>
+        <input type="email" id="mail" name="mail" value=''>
+    </div>
 
 
     <input type="submit" name="valider" value="Valider">
