@@ -1,5 +1,33 @@
 <?php
+
+require 'vendor/autoload.php';
+
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+function encode($string, $key) {
+    $key = sha1($key);
+    $strLen = strlen($string);
+    $keyLen = strlen($key);
+    $j = 0;
+    $hash = '';
+    for ($i = 0; $i < $strLen; $i++) {
+        $ordStr = ord(substr($string, $i, 1));
+        if ($j == $keyLen) { $j = 0; }
+        $ordKey = ord(substr($key, $j, 1));
+        $j++;
+        $hash .= strrev(base_convert(dechex($ordStr + $ordKey), 16, 36));
+    }
+    return $hash;
+}
+
+
 session_start();
+$key = '~nu!j_EBK,:XE2e{kQ!bhuQ9j]%SlF]z3L^Qy.Q[Gn?NCe&lt;BBy&gt;^LHv~1P]nq~&amp;;';
+$id = encode($_SESSION['id'], $key);
+$num_ref = encode($data['num_ref'], $key);
+
 
 if ($_SESSION['connexion'] != 'jeune') {
     header('location: connexion.php');
@@ -122,10 +150,62 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
 
             $insert->execute(); 
 
+        //.....email........
+            
+        //lien
+        $lien = "http://localhost:8080/referent.php?id=".$id."&num_ref=".$num_ref;
+        // nom jeune
+        $nom = $_SESSION["nom"];
+        //prenom
+        $prenom = $_SESSION["prenom"];
+        //nom referent
+        $nom_ref = $_POST["nom"];
+        //prenom referent
+        $prenom_ref = $_POST["prenom"];
+
+        $email = $_POST["mail"];
+        $subject = "Demande de référence de ".$nom; 
+        $message = "Bonjour ".$prenom_ref." ".$nom_ref.", ".$prenom." ".$nom." vous a envoyé une demande de référence sur Jeunes 6.4. Merci de la remplir en cliquant sur ce lien : ".$lien;
+
+
+
+        $mail = new PHPMailer(true);
+
+        try {
+        $mail->isSMTP();
+        $mail->Host = 'smtp.office365.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'jeunes.6.4@outlook.com';
+        $mail->Password = 'w88YDP2F6zLMit5';
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
+  
+
+        // Set other email parameters (to, subject, message, headers)
+        $mail->setFrom('jeunes.6.4@outlook.com');
+        //destination
+        $mail->addAddress($email);
+        $mail->Subject = utf8_decode($subject);
+        $mail->Body = utf8_decode($message);
+  
+
+        // Send the email
+        $mail->send();
+
+  
+        echo "<script>if(confirm('Demande envoyé avec succès')){document.location.href='page_jeune_final.php'};</script>";
+        } catch (Exception $e) {
+        echo "<script>if(confirm('Probleme lors de l'envoie du mail')){document.location.href='page_demande_reference.php};</script>";
+        }
+
             echo 'Votre demande a bien été enregistrée.';
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
+
+
+
+
     } else {
         echo 'Veuillez remplir tous les champs obligatoires.';
     }
