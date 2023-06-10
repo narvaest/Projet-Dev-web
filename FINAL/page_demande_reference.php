@@ -17,7 +17,6 @@ $query = 'CREATE TABLE IF NOT EXISTS referent (
     mail TEXT NOT NULL,
     milieu TEXT NOT NULL,
     description TEXT NOT NULL,
-    validation TEXT NOT NULL,
     confiance INTEGER,
     bienveillance INTEGER,
     respect INTEGER,
@@ -43,22 +42,18 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
         $milieu = htmlspecialchars($_POST['Milieu']);
         $description = htmlspecialchars($_POST['Description']);
 
-        $savoir = $_POST['savoir'];
-        $confiance = '0';
-        $bienveillance = '0';
-        $respect = '0';
-        $honnetete = '0';
-        $tolerance = '0';
-        $impartial = '0';
-        $travail = '0';
-        $equipe = '0';
-        $autonomie = '0';
-        $communication ='0';
-
-        $validation = "non validé";
-
         if (!empty($_POST['savoir'])) {
-
+            $savoir = $_POST['savoir'];
+            $confiance = '0';
+            $bienveillance = '0';
+            $respect = '0';
+            $honnetete = '0';
+            $tolerance = '0';
+            $impartial = '0';
+            $travail = '0';
+            $equipe = '0';
+            $autonomie = '0';
+            $communication ='0';
 
             foreach ($savoir as $item) {
                 switch ($item) {
@@ -95,11 +90,11 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
                 }
             }
         } else {
-            echo 'pas de compétence/savoir être validé';
+            echo 'vide';
         }
 
         try {
-            $insert = $bdd->prepare('INSERT INTO referent (id_jeune, nom, prenom, duree, mail, milieu, description, validation, confiance, bienveillance, respect, honnetete, tolerance, impartial, travail, equipe, autonomie, communication) VALUES(:id_jeune, :nom, :prenom, :duree, :mail, :milieu, :description, :validation, :confiance, :bienveillance, :respect, :honnetete, :tolerance, :impartial, :travail, :equipe, :autonomie, :communication)');
+            $insert = $bdd->prepare('INSERT INTO referent (id_jeune, nom, prenom, duree, mail, milieu, description, confiance, bienveillance, respect, honnetete, tolerance, impartial, travail, equipe, autonomie, communication) VALUES(:id_jeune, :nom, :prenom, :duree, :mail, :milieu, :description, :confiance, :bienveillance, :respect, :honnetete, :tolerance, :impartial, :travail, :equipe, :autonomie, :communication)');
 
             $insert->bindValue(':id_jeune', $_SESSION['id']);
             $insert->bindValue(':nom', $nom);
@@ -108,7 +103,6 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
             $insert->bindValue(':mail', $mail);
             $insert->bindValue(':milieu', $milieu);
             $insert->bindValue(':description', $description);
-            $insert->bindValue(':validation', $validation);
             $insert->bindValue(':confiance', $confiance);
             $insert->bindValue(':bienveillance', $bienveillance);
             $insert->bindValue(':respect', $respect);
@@ -168,13 +162,13 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
                 <li><a href="" title="aller a jeune"><mark>Jeune</mark></a>
                     <ul class="sub-menu">
                         <li>
-                            <a href="page_jeune_final.html" title="monprofil">Mon profil</a>
+                            <a href="page_jeune_final.php" title="monprofil">Mon profil</a>
                         </li>
                         <li>
-                            <a href="page_demande_reference.html" title="réference">Demande de référence</a>
+                            <a href="page_demande_reference.php" title="réference">Demande de référence</a>
                         </li>
                         <li>
-                            <a href="page_liste_reference.html" title="liste">Liste de référence</a>
+                            <a href="page_liste_reference.php" title="liste">Liste de référence</a>
                         </li>
                     </ul>
                 </li>
@@ -190,11 +184,12 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
     </div>
 
     <div class="container2">
-        <div class="middle">
-            <form class="formulaireref" action="" method="POST">
+        <form class="formulaireref" action="#" method="post"></form>
+            <div class="middle">
+                <br>
                 <ul>
                     <li>
-                        <label for="nom">Nom du référent</label>
+                        <label for="Nom">Nom du référent</label>
                         <input type="text" id="nom" name="nom" required>
                     </li>
                     <li>
@@ -218,45 +213,51 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
                         <input type="text" id="Description" name="Description" required>
                     </li>
                 </ul>
+                <input type="submit" value="Valider">
+                <br><br>
+            
+            </div>
 
-                <h3 class="titre_encadrer">Je suis*</h3>
-                <label for="confiance">
-                    <input class="check" type="checkbox" id="confiance" name="savoir[]" value="1"> Confiance
-                </label>
-                <br>
-                <label for="bienveillance">
-                    <input class="check" type="checkbox" id="bienveillance" name="savoir[]" value="2"> Bienveillance
-                </label>
-                <br>
-                <label for="respect">
-                    <input class="check" type="checkbox" id="respect" name="savoir[]" value="3"> Respect
-                </label>
-                <br>
-                <label for="honnêteté">
-                    <input class="check" type="checkbox" id="honnêteté" name="savoir[]" value="4"> Honnêteté
-                </label>
-                <br>
-                <label for="tolerance">
-                    <input class="check" type="checkbox" id="tolerance" name="savoir[]" value="5"> Tolérance
-                </label>
-                <br>
-                <label for="Juste">
-                    <input class="check" type="checkbox" id="Juste" name="savoir[]" value="6"> Juste
-                </label>
-                <br>
-                <label for="Impartial">
-                    <input class="check" type="checkbox" id="Impartial" name="savoir[]" value="7"> Impartial
-                </label>
-                <br>
-                <label for="Travail">
-                    <input class="check" type="checkbox" id="Travail" name="savoir[]" value="8"> Travail
-                </label>
-                </br>
+            <!--------------------------------------->
+            <div class="right">
 
-                <label for="valider">Valider</label><input type="submit" name="Valider" value="Valider">
-
-            </form>
-        </div>
+                <h2 style="color: rgb(247, 4, 194)">MES SAVOIRS ETRE </h2>
+    
+                    <h3 class="titre_encadrer">Je suis*</h3>
+                    <label for="confiance">
+                        <input class="check" type="checkbox" id="confiance" name="savoir" value="1"> Confiance
+                    </label><br>
+                    <label for="bienveillance">
+                        <input class="check" type="checkbox" id="bienveillance" name="savoir" value="2"> Bienveillance
+                    </label><br>
+                    <label for="respect">
+                        <input class="check" type="checkbox" id="respect" name="savoir" value="3"> Respect
+                    </label><br>
+                    <label for="honnetete">
+                        <input class="check" type="checkbox" id="honnetete" name="savoir" value="4"> Honnêteté
+                    </label><br>
+                    <label for="tolerance">
+                        <input class="check" type="checkbox" id="tolerance" name="savoir" value="5"> Tolérance
+                    </label><br>
+                    <label for="impartial">
+                        <input class="check" type="checkbox" id="impartial" name="savoir" value="6"> Impartial
+                    </label><br>
+                    <label for="travail">
+                        <input class="check" type="checkbox" id="travail" name="savoir" value="7"> Travail
+                    </label><br>
+                    <label for="esprit d equipe">
+                        <input class="check" type="checkbox" id="esprit d equipe" name="savoir" value="8"> Esprit d'équipe
+                    </label><br>
+                    <label for="autonomie">
+                        <input class="check" type="checkbox" id="autonomie" name="savoir" value="9"> Autonomie
+                    </label><br>
+                    <label for="communication">
+                        <input class="check" type="checkbox" id="communication" name="savoir" value="10"> Communication
+                    </label></br>
+    
+                <p style="color: rgb(247, 4, 194)">* Faire 4 choix maximum </p>
+            </div>
+        </form>
     </div>
 </body>
 

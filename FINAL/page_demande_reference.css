@@ -140,25 +140,29 @@ mark{
 .middle {
 	position: absolute;
     grid-column: 2/5;
-    border: 2px solid rgb(247, 4, 194);
+    width: 45%;
+    border: 3px solid rgb(247, 4, 194);
 }
 
 .formulaireref {
 	max-width: 500px;
 	margin: 0 auto;
-	background-color: #ffffff;
     margin-bottom: 10px;
     padding: 4%;
 }
 
 
-label {
-	border: none;
+ul label {
 	width: 100px;
 	margin-bottom: 5px;
+    padding: 5%;
 	color: rgb(247, 4, 194);
 }
 
+.right label{
+    color: rgb(247, 4, 194);
+    margin-bottom: 5px;
+}
 
 .middle ul{
 	display: inline-block;
@@ -167,10 +171,6 @@ label {
     justify-content: left;
 }
 
-.formulaire2 {
-	width: 100%;
-	background-color: rgb(255, 214, 245);
-}
 
 body {
 	font-family: Arial, sans-serif;
@@ -181,6 +181,8 @@ body {
 	margin-left: auto;
     margin-right: 20%;
     position: absolute;
+    width: 15%;
+	background-color: rgb(255, 214, 245);
 }
 
 .titre_encadrer {
@@ -192,6 +194,12 @@ body {
 	line-height: 20px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 	color: white;
+}
+
+ul input[type="text"], ul input[type="email"], textarea{
+    width: 90%;
+    background-color: #f2f2f2;
+    margin-left: 5%;
 }
 
 input[type="text"],
