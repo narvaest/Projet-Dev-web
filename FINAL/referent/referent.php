@@ -106,55 +106,89 @@
 
 
 
-
-
     if(isset($_POST['Valider'])){
 
 
 
-        $ref['nom'] = update($_POST['nom'], $ref['nom']);
+        
 
 
 
-        $ref['prenom'] = update($_POST['prenom'], $ref['prenom']);
+         $ref['nom'] = update($_POST['nom'], $ref['nom']);
 
 
 
-        $ref['date'] = update($_POST['date'], $ref['date']);
+         $ref['prenom'] = update($_POST['prenom'], $ref['prenom']);
 
 
 
-        $ref['mail'] = update($_POST['mail'], $ref['mail']);
+         $ref['mail'] = update($_POST['mail'], $ref['mail']);
 
 
 
-        $ref['mail'] = strtolower($ref['mail']);
+         $ref['mail'] = strtolower($ref['mail']);
 
 
 
-        $ref['duree'] = update($_POST['duree'], $ref['duree']);
+         $ref['duree'] = update($_POST['duree'], $ref['duree']);
 
 
 
-        $ref['milieu'] = update($_POST['milieu'], $ref['milieu']);
+         $ref['milieu'] = update($_POST['milieu'], $ref['milieu']);
 
 
 
-        $valid = "validé";
-
-
-
-
+         $valid = "validé";
 
 
 
 
 
+        
 
 
 
 
-        $bdd->exec("UPDATE referent SET nom='{$ref['nom']}', prenom='{$ref['prenom']}', date='{$ref['date']}', mail='{$ref['mail']}', duree='{$ref['duree']}', milieu='{$ref['milieu']}', valid='$valid'  WHERE id_jeune = :id_jeune AND id = :num_ref");
+
+
+
+        try {
+
+            $statement = $bdd->prepare("UPDATE referent SET nom=:nom, prenom=:prenom, mail=:mail, duree=:duree, milieu=:milieu, valid=:valid WHERE id_jeune = :id_jeune AND id = :num_ref");
+
+            
+
+            $statement->bindValue(':nom', $ref['nom']);
+
+            $statement->bindValue(':prenom', $ref['prenom']);
+
+            $statement->bindValue(':mail', $ref['mail']);
+
+            $statement->bindValue(':duree', $ref['duree']);
+
+            $statement->bindValue(':milieu', $ref['milieu']);
+
+            $statement->bindValue(':valid', $valid);
+
+            $statement->bindValue(':id_jeune', $id_jeune);
+
+            $statement->bindValue(':num_ref', $num_ref);
+
+        
+
+            $statement->execute();
+
+            
+
+            
+
+        } catch (PDOException $e) {
+
+            
+
+            echo "An error occurred: " . $e->getMessage();
+
+        }
 
 
 
@@ -670,35 +704,11 @@
 
 
 
-                    </form>
+                    
 
 
 
-                    <form id="form3" class="formulaire3" method="post">
-
-
-
-                        <h3 class="titre_encadrer1">COMMENTAIRES</h3>
-
-
-
-                        <div class="align-label-input">
-
-
-
-                            <label for="commentaire"></label>
-
-
-
-                            <input type="commentaire" id="commentaire" name="commentaire" required>
-
-
-
-                        </div>
-
-
-
-                    </form>
+                    
 
 
 
@@ -714,11 +724,11 @@
 
 
 
-                    <h2 style="color: rgba(197, 214, 6, 0.479)">MES SAVOIRS ETRE </h2>
+                    <h2 style="color: rgba(197, 214, 6, 0.479)"> SAVOIRS ETRE </h2>
 
 
 
-                    <form id="form2" class="formulaire2" method="post">
+                    <div class="formulaire2" >
 
 
 
@@ -886,47 +896,17 @@
 
 
 
+                        <input type="submit" name="Valider" value="Valider">
+
+                    </div>
+
+
+
                     </form>
 
 
 
 
-
-
-
-                    <button onclick="submitForms()" name="Valider">Valider</button>
-
-
-
-
-
-
-
-                    <script langage="javascript">
-
-
-
-                    function submitForms() {
-
-
-
-                        document.getElementById("form1").submit();
-
-
-
-                        document.getElementById("form2").submit();
-
-
-
-                        document.getElementById("form3").submit();
-
-
-
-                    }
-
-
-
-                    </script>
 
 
 
