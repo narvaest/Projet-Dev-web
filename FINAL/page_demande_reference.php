@@ -355,6 +355,22 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
             </div>
         </form>
     </div>
+
+        <script langage="javascript">
+        var checks = document.querySelectorAll(".check");
+
+        var max = 4;
+
+        for (var i = 0; i < checks.length; i++) {
+            checks[i].onclick = selectiveCheck;
+        }
+
+        function selectiveCheck(event) {
+            var checkedChecks = document.querySelectorAll(".check:checked");
+            if (checkedChecks.length >= max + 1)
+                return false;
+        }
+    </script>
 </body>
 
 </html>
