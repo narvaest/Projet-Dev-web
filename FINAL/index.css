@@ -1,59 +1,60 @@
-
-r {
-    text-align: center;
-    font-style: normal;
-    color: rgb(33, 33, 107);
-    font-family: 'Arial';
-    font-size: 40px;
-    line-height: 20px;
-}
-
-p{
-    text-align: center;
-    font-style: normal;
-    color:  rgb(33, 33, 107);
-    font-family: Arial;
-    font-size: 28px;
-    line-height: 32px;
-}
-
-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 body {
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+#content {
+    flex: 90%;
+    background-color: #dddddd;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: lightgrey;
-    background: radial-gradient(circle at top 0% left 30%, rgb(247, 247, 247), lightgrey 20%, rgb(190, 190, 190));
-    overflow: hidden;
 }
 
-.fill-div{
-    display: block;
-    height: 100%;
-    width: 100%;
-    text-decoration: none;
-    color: red;
-    border-bottom: 40px;
-    font-size: 30px;
-    text-align: center;
-    font-style: normal;
-}
-
-footer {
+#footer {
+    flex: 10%;
+    background-color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px;
-    background-color: rgb(255, 255, 255);
-    color: rgb(149, 145, 145);
-    width: 100%;
-    height: 5vh;
+    color: #888888;
+    text-align: center;
 }
 
+#footer p {
+    margin: 0;
+    padding: 10px;
+}
+
+.footer-text {
+    color: #888888;
+    width: 40%;
+}
+
+#footer p.white-text {
+    color: #ffffff;
+}
+
+.red-button {
+    background-color: transparent;
+    color: #d02e1c;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.main-text {
+    width: 70%;
+    font-size: 35px;
+    color: #2a206d;
+    text-align: center;
+}

@@ -1,36 +1,23 @@
-<?php
-    session_start();
-    if(!isset($_SESSION['connexion'])){
-        $_SESSION['connexion']='visiteur';
-    }
-?>
 <!DOCTYPE html>
-<html lang="fr">
-
+<html>
 <head>
-    <title>Page d'accueil</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="index.css" type="text/css">
+    <title>My Page</title>
+    <link rel="stylesheet" type="text/css" href="./assets/css/index.css">
 </head>
-
 <body>
-    <div style="margin-bottom: 10%;">
+<div id="container">
+    <div id="content">
+        <p class="main-text">Pour faire de l'engagement une valeur !</p>
+        <img src="assets/img/jeune64logo.png" alt="Logo Jeunes 64">
+        <p class="main-text">... l’expression d’un potentiel, la promesse d’une richesse !</p>
 
-        <r><center>Pour faire de l'engagement</center><br></r>
-        <r><center>une valeur !</center></r>
-        <img src="logo2.png" alt="logo.jpg">
-        <p>...l'expression d'un potentiel,<br>
-            la promesse d'une richesse !
-        </p>
-        <div id="my-div">
-            <a href="page2.php" class="fill-div">ENTRER</a>
-        </div>
+        <button class="red-button">ENTRER</button>
     </div>
+    <div id="footer">
+        <p class="footer-text">JEUNES 6.4 est un dispositif de valorisation de l’engagement des jeunes en
+            Pyrénées-Atlantiques soutenu par l’Etat, le Conseil général, le conseil régional, les CAF Béarn-Soule et
+            Pays Basque, la MSA, l’université de Pau et des pays de l’Adour, la CPAM.</p>
+    </div>
+</div>
 </body>
-<footer style="bottom:0;position: fixed;">
-    <small>JEUNES 6.4 est un dispositif de valorisation de l’engagement des jeunes en Pyrénées-<br>
-        Atlantiques soutenu par l’Etat, le Conseil général, le conseil régional, les CAF Béarn-Soule et<br>
-        Pays Basque, la MSA, l’université de Pau et des pays de l’Adour, la CPAM.</small>
-</footer>
-
 </html>
