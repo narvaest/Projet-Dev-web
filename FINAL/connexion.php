@@ -15,6 +15,8 @@ $query = 'CREATE TABLE IF NOT EXISTS utilisateur (
 // Execute the query
 $bdd->exec($query);
 
+$error='';
+
 if(isset($_POST['connexion'])){
     if (!empty($_POST['mail']) && !empty($_POST['mdp'])) {
         // On récupère les variables en évitant les injections SQL
