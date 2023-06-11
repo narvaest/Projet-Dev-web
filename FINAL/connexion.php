@@ -2,9 +2,9 @@
 session_start(); // Démarrage de la session
 
 $bdd = new PDO('sqlite:bdd.db');
-
+// on créer une table celle ci n'existe pas
 $query = 'CREATE TABLE IF NOT EXISTS utilisateur (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTOINCREMENT, // id qui s'autoincrémente
         nom TEXT NOT NULL,
         prenom TEXT NOT NULL,
         date TEXT NOT NULL,
@@ -17,8 +17,8 @@ $bdd->exec($query);
 
 $error='';
 
-if(isset($_POST['connexion'])){
-    if (!empty($_POST['mail']) && !empty($_POST['mdp'])) {
+if(isset($_POST['connexion'])){ // si le bouton submit qui a comme nom connexion est appuyé on effectue le code suivant
+    if (!empty($_POST['mail']) && !empty($_POST['mdp'])) { // on regarde si les valeurs du formulaire récupérées avec la variable superglobale $_POST sont non vide
         // On récupère les variables en évitant les injections SQL
         $mail = htmlspecialchars($_POST['mail']);
         $mdp = htmlspecialchars($_POST['mdp']);
