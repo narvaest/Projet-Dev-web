@@ -180,6 +180,7 @@ $selectedReferences = $_GET['num_ref'];
 
     echo '<div class="top-left">';
     echo '<a id="referent-title">REFERENT</a>';
+    echo '<br>';
     echo '<form id="form1" method="post">';
 
     echo '<label>Nom :</label>';
