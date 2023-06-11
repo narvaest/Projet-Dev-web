@@ -18,13 +18,13 @@
             <li><a id="jeune" href="#">JEUNE</a></li>
             <li><a id="referent" href="#">RÉFÉRENT</a></li>
             <li><a id="consultant" href="#">CONSULTANT</a></li>
-            <li><a id="partenaires" href="#">PARTENAIRES</a></li>
+            <li><a id="partenaires" href="page_partenaire_final.html">PARTENAIRES</a></li>
         </ul>
     </div>
 
 
 
-<div class="title">Merci d'avoir confirmer cette reference</div>
+<div class="title">Merci d'avoir confirmé cette reference</div>
 <img style="display: block; margin: 0 auto;" src="checkmark.gif" alt="Animated GIF">
 </body>
 </html>
