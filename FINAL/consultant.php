@@ -126,7 +126,7 @@ $jeune = $statement->fetch();
 
 <header>
 
-    <img src="./assets/img/jeune64logo.png" id="logo" alt="Logo">
+    <img src="logo2.png" id="logo" alt="Logo">
 
 
 
