@@ -703,7 +703,7 @@
             <li><a id="jeune" href="#">JEUNE</a></li>
             <li><a id="referent" href="#">RÉFÉRENT</a></li>
             <li><a id="consultant" href="#">CONSULTANT</a></li>
-            <li><a id="partenaires" href="#">PARTENAIRES</a></li>
+            <li><a id="partenaires" href="page_partenaire_final.html">PARTENAIRES</a></li>
         </ul>
     </div>
 
