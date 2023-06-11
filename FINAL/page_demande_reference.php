@@ -30,7 +30,6 @@ function encode($string, $key) {
 
 $key = '~nu!j_EBK,:XE2e{kQ!bhuQ9j]%SlF]z3L^Qy.Q[Gn?NCe&lt;BBy&gt;^LHv~1P]nq~&amp;;';
 $id = encode($_SESSION['id'], $key);
-$num_ref = encode($data['num_ref'], $key);
 
 
 
@@ -150,6 +149,7 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
             $insert->bindValue(':valid', $valid);
 
             $insert->execute(); 
+            $num_ref=encode($bdd->lastInsertId(), $key);
 
         //.....email........
             
