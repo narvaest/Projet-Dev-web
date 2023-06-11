@@ -31,67 +31,87 @@ header{
     height: 250px;
 }
 .menunav{
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    background: radial-gradient(circle at top 0% left 30%,rgb(247, 247, 247),lightgrey 30%,rgb(190, 190, 190));
+    font-size: 120%; 
+    width: 35%;
+    height: 80px;
+    line-height: 20px;
+    margin: 0 auto;
+}
+
+.navi li{
+    display: block; 
+    padding : 18%;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.menunav li a{   
+    text-decoration: none; 
+    position: relative;   
+}
+
+.navi{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 10px;
     grid-auto-rows: minmax(100px, auto);
 }
 
-
-.nav{
-    background-color: lightgrey;
-    background: radial-gradient(circle at top 0% left 30%,rgb(247, 247, 247),lightgrey 30%,rgb(190, 190, 190));
-    height: 70%;
-    grid-column: 2 / 3;
-}
-.navi{
-    display: grid;
-    grid-template-columns: repeat(4, 0.5fr);
-    grid-gap: 15px;
-    grid-auto-rows: minmax(50px, auto);
-}
-
-#navigation{
-    font-size: 1.1vw;
-    font-family: Arial, Helvetica, sans-serif;
-    text-transform: uppercase;
-    margin-top: 20px;
-    text-align: center;
-}
-
-
-.jeune a{
-    grid-row: 1;
+.navi li:nth-child(1){
     grid-column: 25%;
-    color :rgb(219, 0, 142);
     text-decoration: none;
 }
 mark{
-    background-color:rgb(123, 123, 123);;
+    background-color: rgb(219, 0, 142);
     color: white;
     padding: 0.3vw;
 }
-.referent a{
-    grid-row: 1;
+.navi li:nth-child(2){
     grid-column: 25%;
     color: rgb(0, 146, 0);
     text-decoration: none;
 }
-.consultant a{
-    grid-row: 1;
+.navi li:nth-child(3){
     grid-column: 25%;
     color: rgb(0, 171, 227);
     text-decoration: none;
 }
-.partenaire a{
-    grid-row: 1;
+
+.navi li:nth-child(4) a{
     grid-column: 25%;
-    
+    color:black;
+    text-decoration: none;
+    text-align: left;
+}
+
+.sub-menu{
+    display: none;  
+    position: absolute; 
+    margin-top: 1%;
+    border: 3px solid rgb(219, 0, 142);
+    background: radial-gradient(circle at top 0% left 30%,rgb(247, 247, 247),lightgrey 30%,rgb(190, 190, 190));
+}
+
+.sub-menu li a{
+    color: black;
     text-decoration: none;
 }
 
-a:hover, a:focus, a:active{
-    background-color: yellow;
+.sub-menu li{
+    text-align: left;
+    padding-left: 3%;
+    font-size: 85%;
+}
+.sub-menu li:hover{
+    background-color: grey;
+}
+
+.menunav li:hover .sub-menu{
+    display: block;
+	z-index:10;
 }
 
 /* -------------------------partenaires---------------------------- */
