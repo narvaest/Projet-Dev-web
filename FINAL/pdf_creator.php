@@ -1,36 +1,17 @@
 <?php
 session_start();
 
-// Changes... We need to take this from the URL
-$num_ref = 1;
-$id_jeune = 1;
+if ($_SESSION['connexion'] != 'jeune') {
+    header('location: connexion.php');
+    exit();
+}
+
+$id_jeune = $_SESSION['id'];
+$nom_jeune = $_SESSION['prenom'].' '.$_SESSION['nom'];
 
 $dsn = 'sqlite:bdd.db';
 // Connect to the SQLite database
 $db = new PDO($dsn);
-
-$query = 'CREATE TABLE IF NOT EXISTS utilisateur (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nom TEXT NOT NULL,
-    prenom TEXT NOT NULL,
-    date TEXT NOT NULL,
-    mail TEXT NOT NULL,
-    mdp TEXT NOT NULL
-)';
-
-// Execute the query
-$db->exec($query);
-
-// Recupérer le nom du jeune
-$nom_jeune = '';
-$Query = "SELECT * FROM utilisateur WHERE id = :id_jeune";
-$res = $db->prepare($Query);
-$res->bindValue(':id_jeune', $id_jeune, PDO::PARAM_INT);
-$res->execute();
-
-while ($line = $res->fetch(PDO::FETCH_ASSOC)) {
-    $nom_jeune .= $line['prenom'].' '.$line['nom'];
-}
 
 function fetch_data()
 {
