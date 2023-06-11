@@ -214,9 +214,52 @@ if (isset($_POST['Valider'])) {
 
             }
 
-
-
+            //.....email........
             
+            //lien
+            $lien = 'http://localhost:8080/consultant.php?id='.$id_jeune ."&". http_build_query(array('num_ref' => $selectedReferences));
+            // nom jeune
+            $nom = $_SESSION["nom"];
+            //prenom
+            $prenom = $_SESSION["prenom"];
+
+            // channnnngeeee
+            $email = $_POST["mail"];
+            $subject = "Partage de référence de ".$nom; 
+            $message = "Bonjour, ".$prenom." ".$nom." vous partage ses références sur Jeunes 6.4. Merci de cliquer sur ce lien pour valoriser son expérience: ".$lien;
+
+
+
+            $mail = new PHPMailer(true);
+
+            try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.office365.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'jeunes.6.4@outlook.com';
+            $mail->Password = 'w88YDP2F6zLMit5';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
+  
+
+            // Set other email parameters (to, subject, message, headers)
+            $mail->setFrom('jeunes.6.4@outlook.com');
+            //destination
+            $mail->addAddress($email);
+            $mail->Subject = utf8_decode($subject);
+            $mail->Body = utf8_decode($message);
+  
+
+            // Send the email
+            $mail->send();
+
+  
+            echo "<script>if(confirm('Mail envoyé avec succès')){document.location.href='page_jeune_final.php'};</script>";
+            } catch (Exception $e) {
+            echo "<script>if(confirm('Probleme lors de l'envoie du mail')){document.location.href='page_demande_reference.php};</script>";
+            }
+
+            echo $selectedReferences['0'];
 
         }else{echo "vous n'avez sélectionné aucune référence à envoyer" ;}
 
