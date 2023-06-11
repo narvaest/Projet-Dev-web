@@ -29,7 +29,7 @@ $jeune = $statement->fetch();
 <html lang="fr">
 <head>
     <title>Consultant</title>
-    <link rel="stylesheet" type="text/css" href="./consultant/assets/css/consultant.css">
+    <link rel="stylesheet" type="text/css" href="consultant.css">
 </head>
 <body>
 <header>
