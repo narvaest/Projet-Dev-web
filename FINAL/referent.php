@@ -691,7 +691,7 @@
 </head>
 <body>
     <header>
-        <img src="jeune64logo.png" id="logo" alt="Logo">
+        <img src="logo2.png" id="logo" alt="Logo">
         <div style="flex-direction: column; justify-content: center; align-items: flex-end; flex: 3 1 auto; display: flex;">
             <div id="title">RÉFÉRENT</div>
             <div id="subtitle">Je confirme la valeur de ton engagement</div>
