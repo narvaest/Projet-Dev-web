@@ -77,13 +77,13 @@ function fetch_data()
     while ($row = $results->fetch(PDO::FETCH_ASSOC)) {
         $output .= '
         <tr>
-            <td align="center">Referent: '.$row["prenom"].' '.$row["nom"].'</td>
-            <td align="center">Milieu: '.$row["milieu"].'</td>
-            <td align="center">Duree: '.$row["duree"].'</td>
-            <td align="center">Mail: '.$row["mail"].'</td>
+            <td >Referent: '.$row["prenom"].' '.$row["nom"].'</td>
+            <td >Milieu: '.$row["milieu"].'</td>
+            <td >Duree: '.$row["duree"].'</td>
+            <td >Mail: '.$row["mail"].'</td>
         </tr>
         <tr>
-            <td align="center" colspan="4">Description: '.$row["description"].'</td>
+            <td colspan="4">Description: '.$row["description"].'</td>
         </tr>
         ';
 
@@ -160,9 +160,25 @@ if (isset($_POST['Pdf'])){
 
     // Output the user details
     $html = '
+    <style>
+        th {
+            text-align: center;
+            background-color: #ff63b4;
+            text-align: center;
+            font-weight: lighter;
+            font-size: x-large;
+        }
+        
+        td {
+            padding: 15px;
+            text-align: center;
+            background-color : #f2f2f2;
+        }
+    </style>
+
         <table border="1">
         <tr>
-            <th colspan="4" align="center">Reference de '.$nom_jeune.'</th>
+            <th colspan="4">Reference de '.$nom_jeune.'</th>
         </tr>
         <br><br>
     ';
@@ -596,7 +612,7 @@ if (isset($_POST['Valider'])) {
 
     <input type="submit" name="Valider" value="Valider">
     <br><br>
-    <input type="submit" name="Pdf" value="Télécharger toutes les références">
+    <input type="submit"  name="Pdf" value="Télécharger toutes les références">
 
 
 
