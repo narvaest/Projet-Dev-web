@@ -1,5 +1,9 @@
 <?php
-
+session_start();
+if ($_SESSION['connexion'] != 'jeune') {
+    header('location: connexion.php');
+    exit();
+}
 require 'vendor/autoload.php';
 
 
@@ -23,16 +27,13 @@ function encode($string, $key) {
 }
 
 
-session_start();
+
 $key = '~nu!j_EBK,:XE2e{kQ!bhuQ9j]%SlF]z3L^Qy.Q[Gn?NCe&lt;BBy&gt;^LHv~1P]nq~&amp;;';
 $id = encode($_SESSION['id'], $key);
 $num_ref = encode($data['num_ref'], $key);
 
 
-if ($_SESSION['connexion'] != 'jeune') {
-    header('location: connexion.php');
-    exit();
-}
+
 
 $bdd = new PDO('sqlite:bdd.db');
 
