@@ -85,12 +85,11 @@ mark{
     text-decoration: none;
 }
 
-.navi li:nth-child(4){
+.navi li:nth-child(4) a{
     grid-column: 25%;
     color:black;
     text-decoration: none;
     text-align: left;
-    padding-left: 5%;
 }
 
 .sub-menu{
