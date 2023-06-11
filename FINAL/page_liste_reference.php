@@ -249,7 +249,7 @@ if (isset($_POST['Valider'])) {
             $prenom = $_SESSION["prenom"];
             
             $email = $_POST["mail"];
-            $subject = "Partage de référence de ".$nom; 
+            $subject = "Partage de référence de ".$prenom." ".$nom; 
             $message = "Bonjour, ".$prenom." ".$nom." vous partage ses références sur Jeunes 6.4. Merci de cliquer sur ce lien pour valoriser son expérience: ".$lien;
 
 
