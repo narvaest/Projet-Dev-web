@@ -3,7 +3,40 @@
 
 
     $bdd = new PDO('sqlite:bdd.db');
+    
+    $key='~nu!j_EBK,:XE2e{kQ!bhuQ9j]%SlF]z3L^Qy.Q[Gn?NCe&lt;BBy&gt;^LHv~1P]nq~&amp;;';
 
+
+
+    function decode($string, $key) {
+
+        $key = sha1($key); // Génère une clé de chiffrement à partir de la clé fournie en utilisant SHA-1
+
+        $strLen = strlen($string); // Longueur de la chaîne chiffrée
+
+        $keyLen = strlen($key); // Longueur de la clé de chiffrement
+
+        $j = 0; // Indice pour parcourir la clé
+
+        $hash = ''; // Chaîne déchiffrée résultante
+
+        for ($i = 0; $i < $strLen; $i += 2) {
+
+            $ordStr = hexdec(base_convert(strrev(substr($string, $i, 2)), 36, 16)); // Convertit la représentation base 36 inversée en décimal
+
+            if ($j == $keyLen) { $j = 0; } // Réinitialise l'indice de la clé si on atteint sa fin
+
+            $ordKey = ord(substr($key, $j, 1)); // Récupère l'ordre du caractère correspondant à l'index $j de la clé
+
+            $j++; // Incrémente l'indice de la clé
+
+            $hash .= chr($ordStr - $ordKey); // Soustrait l'ordre de la clé de l'ordre du caractère et ajoute le caractère déchiffré à la chaîne déchiffrée
+
+        }
+
+        return $hash;
+
+    }
 
 
     function update($new, $session){
@@ -34,11 +67,11 @@
 
 
 
-    $num_ref = 1;
+    $id_jeune = decode($_GET['id'], $key);
 
 
 
-    $id_jeune = 1;
+    $num_ref = decode($_GET['num_ref'], $key);
 
 
 
