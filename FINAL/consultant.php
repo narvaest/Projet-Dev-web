@@ -1,7 +1,8 @@
 <?php
 $bdd = new PDO('sqlite:bdd.db');
 
-$id_jeune = 1;
+$id_jeune = $_GET['id'];
+
 
 
 $statement = $bdd->prepare("SELECT * FROM utilisateur WHERE id = :id_jeune");
@@ -29,7 +30,7 @@ $jeune = $statement->fetch();
 <html lang="fr">
 <head>
     <title>Consultant</title>
-    <link rel="stylesheet" type="text/css" href="consultant.css">
+    <link rel="stylesheet" type="text/css" href="./consultant/assets/css/consultant.css">
 </head>
 <body>
 <header>
@@ -94,7 +95,7 @@ $jeune = $statement->fetch();
 
 <?php
 
-$selectedReferences = [1,2,3];
+$selectedReferences = $_GET['num_ref'];
 
     foreach($selectedReferences as $items){
 
@@ -106,13 +107,6 @@ $selectedReferences = [1,2,3];
         $statement2->bindValue(':num_ref', $item);
     
         $statement2->execute();
-
-    
-
-
-    
-
-
 
 
     $ref = $statement2->fetch();
