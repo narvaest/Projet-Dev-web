@@ -165,7 +165,7 @@ if (isset($_POST['Valider'])) { // lorsque le bouton de validation est cliqué
         $prenom_ref = $_POST["prenom"];
 
         $email = $_POST["mail"];
-        $subject = "Demande de référence de ".$nom; 
+        $subject = "Demande de référence de ".$prenom.$nom; 
         $message = "Bonjour ".$prenom_ref." ".$nom_ref.", ".$prenom." ".$nom." vous a envoyé une demande de référence sur Jeunes 6.4. Merci de la remplir en cliquant sur ce lien : ".$lien;
 
 
