@@ -216,7 +216,7 @@ if (isset($_POST['Valider'])) {
 
 
 
-            echo $selectedReferences['0'];
+            
 
         }else{echo "vous n'avez sélectionné aucune référence à envoyer" ;}
 
