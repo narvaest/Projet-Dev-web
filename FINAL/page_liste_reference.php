@@ -223,6 +223,7 @@ if (isset($_POST['Valider'])) {
             //.....email........
             
             //lien
+            $id_jeune=encode($id_jeune, $key);
             $lien = 'http://localhost:8080/consultant.php?id='.$id_jeune ."&". http_build_query(array('num_ref' => $selectedReferences));
             // nom jeune
             $nom = $_SESSION["nom"];
