@@ -164,7 +164,7 @@ $selectedReferences = $_GET['num_ref'];
         $statement2 = $bdd->prepare($query);
     
         $statement2->bindValue(':id', $id_jeune);
-        $statement2->bindValue(':num_ref', $item);
+        $statement2->bindValue(':num_ref', $items);
     
         $statement2->execute();
 
