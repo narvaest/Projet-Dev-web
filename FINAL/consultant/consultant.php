@@ -115,7 +115,7 @@ $selectedReferences = [1,2,3];
 
 
 
-    $ref = $statement->fetch();
+    $ref = $statement2->fetch();
 
 // Affichage des demandes de références
 
