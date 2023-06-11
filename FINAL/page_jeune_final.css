@@ -40,7 +40,7 @@ header{
     font-family: Arial, Helvetica, sans-serif;
     background: radial-gradient(circle at top 0% left 30%,rgb(247, 247, 247),lightgrey 30%,rgb(190, 190, 190));
     font-size: 120%; 
-    width: 35%;
+    width: 700px;
     height: 80px;
     line-height: 20px;
     margin: 0 auto;
@@ -208,4 +208,12 @@ input[type="submit"]:hover , button:hover{
 
 .button{
     padding: 10px 20px;
+    border-radius: 5px;
+    background-color: rgb(247, 4, 194);
+    width: 150px;
+}
+
+.button a{
+    text-decoration: none;
+    color: white;
 }

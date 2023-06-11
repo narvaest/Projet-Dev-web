@@ -295,6 +295,7 @@ if($errorMessage!=''){
     </div>
     <div class="deconnection">
         <div class="msg">Si vous voulez vous déconnectez :</div>
+        <br>
         <div class="button">
             <a href="logout.php">Se déconnecter</a>
         </div>
