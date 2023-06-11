@@ -466,7 +466,7 @@
                         <input type="text" class="field-name" name="milieu" value="<?php echo $ref['milieu'] ?>" /><br>
                         <label>Durée engagement :</label>
                         <input type="text" class="field-name" name="duree" value="<?php echo $ref['duree'] ?>" /><br>
-                    </form>
+                    
                 </div>
                 <div class="top-right">
                     <h2 style="color: rgba(197, 214, 6, 0.479)"> SAVOIRS ETRE </h2>
