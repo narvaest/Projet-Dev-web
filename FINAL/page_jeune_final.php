@@ -218,7 +218,7 @@ if($errorMessage!=''){
 
                 <li>Consultant</li>
 
-                <li>Partenaire</li>
+                <li><a href="page_partenaire_final.html">Partenaire</a></li>
 
             </ul>
 
