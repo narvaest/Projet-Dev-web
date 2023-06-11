@@ -154,7 +154,7 @@ $jeune = $statement->fetch();
 
         <li><a id="consultant" href="#">CONSULTANT</a></li>
 
-        <li><a id="partenaires" href="#">PARTENAIRES</a></li>
+        <li><a id="partenaires" href="page_partenaire_final.html">PARTENAIRES</a></li>
 
     </ul>
 
