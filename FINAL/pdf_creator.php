@@ -1,37 +1,126 @@
 <?php
+session_start();
 
-function fetch_data(){
+// Changes... We need to take this from the URL
+$num_ref = 1;
+$id_jeune = 1;
+
+$dsn = 'sqlite:bdd.db';
+// Connect to the SQLite database
+$db = new PDO($dsn);
+
+$query = 'CREATE TABLE IF NOT EXISTS utilisateur (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nom TEXT NOT NULL,
+    prenom TEXT NOT NULL,
+    date TEXT NOT NULL,
+    mail TEXT NOT NULL,
+    mdp TEXT NOT NULL
+)';
+
+// Execute the query
+$db->exec($query);
+
+// Recupérer le nom du jeune
+$nom_jeune = '';
+$Query = "SELECT * FROM utilisateur WHERE id = :id_jeune";
+$res = $db->prepare($Query);
+$res->bindValue(':id_jeune', $id_jeune, PDO::PARAM_INT);
+$res->execute();
+
+while ($line = $res->fetch(PDO::FETCH_ASSOC)) {
+    $nom_jeune .= $line['prenom'].' '.$line['nom'];
+}
+
+function fetch_data()
+{
+    global $id_jeune;
+    global $db;
+
     $output = '';
-    $dsn = 'sqlite:bdd.db';
-    // Connect to the SQLite database
-    $db = new PDO($dsn);
 
-     // Create the table if it doesn't exist
-     $createTableQuery = "
-     CREATE TABLE IF NOT EXISTS your_table (
-         id INTEGER PRIMARY KEY AUTOINCREMENT,
-         name TEXT,
-         email TEXT
-     )
-    ";
+    $createTableQuery = 'CREATE TABLE IF NOT EXISTS referent (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id_jeune INTEGER,
+        nom TEXT NOT NULL,
+        prenom TEXT NOT NULL,
+        duree TEXT NOT NULL,
+        mail TEXT NOT NULL,
+        milieu TEXT NOT NULL,
+        description TEXT NOT NULL,
+        confiance INTEGER,
+        bienveillance INTEGER,
+        respect INTEGER,
+        honnetete INTEGER,
+        tolerance INTEGER,
+        impartial INTEGER,
+        travail INTEGER,
+        equipe INTEGER,
+        autonomie INTEGER,
+        communication INTEGER,
+        valid TEXT NOT NULL
+    )';
+
     $db->exec($createTableQuery);
 
     // Fetch data from the table
-    $selectQuery = "SELECT * FROM your_table";
-    $results = $db->query($selectQuery);
+    $selectQuery = "SELECT * FROM referent WHERE id_jeune = :id_jeune";
+    $results = $db->prepare($selectQuery);
+    $results->bindValue(':id_jeune', $id_jeune, PDO::PARAM_INT);
+    $results->execute();
+
     // Loop through the results and generate the table rows
     while ($row = $results->fetch(PDO::FETCH_ASSOC)) {
         $output .= '
-            <tr>
-                <td>'.$row["id"].'</td>
-                <td>'.$row["name"].'</td>
-                <td>'.$row["email"].'</td>
-            </tr>
+        <tr>
+            <td align="center">Referent: '.$row["prenom"].' '.$row["nom"].'</td>
+            <td align="center">Milieu: '.$row["milieu"].'</td>
+            <td align="center">Duree: '.$row["duree"].'</td>
+            <td align="center">Mail: '.$row["mail"].'</td>
+        </tr>
+        <tr>
+            <td align="center" colspan="4">Description: '.$row["description"].'</td>
+        </tr>
         ';
+
+        // Savoir
+        $savoir = '';
+        if ($row["confiance"] == 1) {
+            $savoir .= ' confiance ';
+        }
+        if ($row["bienveillance"] == 1) {
+            $savoir .= ' bienveillance ';
+        }
+        if ($row["respect"] == 1) {
+            $savoir .= ' respect ';
+        }
+        if ($row["honnetete"] == 1) {
+            $savoir .= ' honnetete ';
+        }
+        if ($row["tolerance"] == 1) {
+            $savoir .= ' tolerance ';
+        }
+        if ($row["travail"] == 1) {
+            $savoir .= ' travail ';
+        }
+        if ($row["autonomie"] == 1) {
+            $savoir .= ' autonomie ';
+        }
+        if ($row["communication"] == 1) {
+            $savoir .= ' communication ';
+        }
+
+        if ($savoir != '') {
+            $output .= '
+            <tr>
+                <td align="center" colspan="4">Savoir: '.$savoir.'</td>
+            </tr>';
+        }
+
+        $output .= '<br><br>';
     }
 
     return $output;
-
 }
 
 ob_start(); // Start output buffering
@@ -42,11 +131,11 @@ require_once('tcpdf/tcpdf.php');
 $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8');
 
 // Set document information
-$pdf->SetCreator('Your Website');
-$pdf->SetAuthor('Your Name');
-$pdf->SetTitle('User Registration');
-$pdf->SetSubject('User Details');
-$pdf->SetKeywords('user, registration, details');
+$pdf->SetCreator('Jeunes 6.4');
+$pdf->SetAuthor('Cy-tech');
+$pdf->SetTitle('Vos references');
+$pdf->SetSubject('Reference');
+$pdf->SetKeywords('utilisateur, reference, details');
 
 // Add a page
 $pdf->AddPage();
@@ -57,19 +146,19 @@ $pdf->SetFont('helvetica', '', 12);
 // Output the user details
 $html = '
         <table border="1">
-            <tr>
-                <th width="50%">Jeunes</th>
-                <th width="50%">Referent</th> 
-            </tr>
+        <tr>
+            <th colspan="4" align="center">Reference de '.$nom_jeune.'</th>
+        </tr>
+        <br><br>
 ';
 
 $html .= fetch_data();
 
-$html .='</table>';
+$html .= '</table>';
 $pdf->writeHTML($html, true, 0, true, false, '');
 
 // Output the PDF as a file or inline
-$pdf->Output('user_details.pdf', 'I');  // 'D' to force download, 'I' to open in the browser
+$pdf->Output('Vos_references.pdf', 'D');  // 'D' to force download, 'I' to open in the browser
 
 ob_end_flush(); // Flush and stop output buffering
 ?>
