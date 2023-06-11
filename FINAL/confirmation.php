@@ -22,7 +22,6 @@
         </ul>
     </div>
 
-    <div class="title">Validez cet engagement en prenant en compte sa valeur</div>
 
 
 <div class="title">Merci d'avoir confirmer cette reference</div>
