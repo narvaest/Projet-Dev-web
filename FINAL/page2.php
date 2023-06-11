@@ -34,8 +34,8 @@
                 <div class="nav">
                     <div class="navi">
                         <div class="jeune" id="navigation"><a href="page_jeune_final.php" title="aller a jeune">Jeune</a></div>
-                        <div class="referent" id="navigation"><a href="page_referent_final.html" title="aller a referent">Référent</a></div>
-                        <div class="consultant" id="navigation"><a href="page_consultant_final.html" title="aller a consultant">Consultant</a></div>
+                        <div class="referent" id="navigation"><a href="#" title="aller a referent">Référent</a></div>
+                        <div class="consultant" id="navigation"><a href="#" title="aller a consultant">Consultant</a></div>
                         <div class="partenaire" id="navigation"><a href="page_partenaire_final.html" title="aller a partenaire">Partenaire</a></div>
                     </div>
                 </div>
