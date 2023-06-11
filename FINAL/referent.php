@@ -404,7 +404,7 @@
 <html lang="fr">
 <head>
     <title>Référent</title>
-    <link rel="stylesheet" type="text/css" href="re.css">
+    <link rel="stylesheet" type="text/css" href="referent.css">
 </head>
 <body>
     <header>
