@@ -348,13 +348,13 @@ $selectedReferences = $_GET['num_ref'];
 
     echo '<div class="top-right">';
 
-    echo '<h2 style="color: rgba(197, 214, 6, 0.479)"> SAVOIRS ETRE </h2>';
+    
 
     echo '<div class="formulaire2" >';
 
 
 
-    echo '<h3 class="titre_encadrer">Je suis*</h3>';
+    echo '<h2 style="color: rgba(197, 214, 6, 0.479)"> SAVOIRS ETRE </h2>';
 
 
 
