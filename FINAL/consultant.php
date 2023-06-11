@@ -258,9 +258,9 @@ $selectedReferences = $_GET['num_ref'];
 
     echo '</div>';
 
-    echo '<div class="bottom-container"></div>';
 
-    echo '</div>';
+
+    echo '</div><br>';
     }
 ?>
 
