@@ -557,8 +557,7 @@
                     par les jeunes dans différents domaines.</b></p>
                     </div>
             </div>
-            <div class="bottom-container">
-            </div>
+
         </div>
     </div>
     <script>
