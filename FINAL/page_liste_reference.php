@@ -41,6 +41,24 @@ $bdd = new PDO('sqlite:bdd.db');
 $id_jeune = $_SESSION['id'];
 $nom_jeune = $_SESSION['prenom'].' '.$_SESSION['nom'];
 
+$key='~nu!j_EBK,:XE2e{kQ!bhuQ9j]%SlF]z3L^Qy.Q[Gn?NCe&lt;BBy&gt;^LHv~1P]nq~&amp;;';
+
+    function encode($string, $key) {
+        $key = sha1($key); // Génère une clé de chiffrement à partir de la clé fournie en utilisant SHA-1
+        $strLen = strlen($string); // Longueur de la chaîne à chiffrer
+        $keyLen = strlen($key); // Longueur de la clé de chiffrement
+        $j = 0; // Indice pour parcourir la clé
+        $hash = ''; // Chaîne chiffrée résultante
+        for ($i = 0; $i < $strLen; $i++) {
+            $ordStr = ord(substr($string, $i, 1)); // Récupère l'ordre du caractère à l'index $i de la chaîne
+            if ($j == $keyLen) { $j = 0; } // Réinitialise l'indice de la clé si on atteint sa fin
+            $ordKey = ord(substr($key, $j, 1)); // Récupère l'ordre du caractère correspondant à l'index $j de la clé
+            $j++; // Incrémente l'indice de la clé
+            $hash .= strrev(base_convert(dechex($ordStr + $ordKey), 16, 36)); // Convertit la somme des deux ordres en base 36 inversée et l'ajoute à la chaîne chiffrée
+        }
+        return $hash; // Retourne la chaîne chiffrée
+    }
+
 function fetch_data()
 {
     //récupération des données pour le pdf
