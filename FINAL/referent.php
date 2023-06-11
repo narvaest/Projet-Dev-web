@@ -2,44 +2,89 @@
 
 
 
+
+
+
+
     $bdd = new PDO('sqlite:bdd.db');
+
     
+
     $key='~nu!j_EBK,:XE2e{kQ!bhuQ9j]%SlF]z3L^Qy.Q[Gn?NCe&lt;BBy&gt;^LHv~1P]nq~&amp;;';
+
+
+
+
 
 
 
     function decode($string, $key) {
 
+
+
         $key = sha1($key); // Génère une clé de chiffrement à partir de la clé fournie en utilisant SHA-1
+
+
 
         $strLen = strlen($string); // Longueur de la chaîne chiffrée
 
+
+
         $keyLen = strlen($key); // Longueur de la clé de chiffrement
+
+
 
         $j = 0; // Indice pour parcourir la clé
 
+
+
         $hash = ''; // Chaîne déchiffrée résultante
+
+
 
         for ($i = 0; $i < $strLen; $i += 2) {
 
+
+
             $ordStr = hexdec(base_convert(strrev(substr($string, $i, 2)), 36, 16)); // Convertit la représentation base 36 inversée en décimal
+
+
 
             if ($j == $keyLen) { $j = 0; } // Réinitialise l'indice de la clé si on atteint sa fin
 
+
+
             $ordKey = ord(substr($key, $j, 1)); // Récupère l'ordre du caractère correspondant à l'index $j de la clé
+
+
 
             $j++; // Incrémente l'indice de la clé
 
+
+
             $hash .= chr($ordStr - $ordKey); // Soustrait l'ordre de la clé de l'ordre du caractère et ajoute le caractère déchiffré à la chaîne déchiffrée
+
+
 
         }
 
+
+
         return $hash;
+
+
 
     }
 
 
+
+
+
     function update($new, $session){
+
+
+
+
 
 
 
@@ -47,7 +92,15 @@
 
 
 
+
+
+
+
             return $session;
+
+
+
+
 
 
 
@@ -55,7 +108,15 @@
 
 
 
+
+
+
+
             return htmlspecialchars($new);
+
+
+
+
 
 
 
@@ -63,7 +124,15 @@
 
 
 
+
+
+
+
     }
+
+
+
+
 
 
 
@@ -71,7 +140,19 @@
 
 
 
+
+
+
+
     $num_ref = decode($_GET['num_ref'], $key);
+
+
+
+
+
+
+
+
 
 
 
@@ -87,13 +168,31 @@
 
 
 
+
+
+
+
+
+
+
+
     $statement->bindValue(':id_jeune', $id_jeune);
+
+
 
     $statement->bindValue(':num_ref', $num_ref);
 
 
 
+
+
+
+
     $statement->execute();
+
+
+
+
 
 
 
@@ -105,11 +204,27 @@
 
 
 
+
+
+
+
+
+
+
+
     $statement2 = $bdd->prepare("SELECT * FROM utilisateur WHERE id = :id_jeune");
 
 
 
+
+
+
+
     $statement2->bindValue(':id_jeune', $id_jeune);
+
+
+
+
 
 
 
@@ -121,7 +236,25 @@
 
 
 
+
+
+
+
+
+
+
+
     $jeune = $statement2->fetch();
+
+
+
+    
+
+
+
+
+
+
 
 
 
@@ -131,7 +264,15 @@
 
 
 
+
+
+
+
         
+
+
+
+
 
 
 
@@ -139,7 +280,15 @@
 
 
 
+
+
+
+
          $ref['prenom'] = update($_POST['prenom'], $ref['prenom']);
+
+
+
+
 
 
 
@@ -147,7 +296,15 @@
 
 
 
+
+
+
+
          $ref['mail'] = strtolower($ref['mail']);
+
+
+
+
 
 
 
@@ -155,7 +312,15 @@
 
 
 
+
+
+
+
          $ref['milieu'] = update($_POST['milieu'], $ref['milieu']);
+
+
+
+
 
 
 
@@ -165,6 +330,12 @@
 
 
 
+
+
+
+
+
+
         
 
 
@@ -173,43 +344,23 @@
 
 
 
-        try {
 
-            $statement = $bdd->prepare("UPDATE referent SET nom=:nom, prenom=:prenom, mail=:mail, duree=:duree, milieu=:milieu, valid=:valid WHERE id_jeune = :id_jeune AND id = :num_ref");
 
-            
 
-            $statement->bindValue(':nom', $ref['nom']);
 
-            $statement->bindValue(':prenom', $ref['prenom']);
 
-            $statement->bindValue(':mail', $ref['mail']);
 
-            $statement->bindValue(':duree', $ref['duree']);
 
-            $statement->bindValue(':milieu', $ref['milieu']);
 
-            $statement->bindValue(':valid', $valid);
 
-            $statement->bindValue(':id_jeune', $id_jeune);
 
-            $statement->bindValue(':num_ref', $num_ref);
 
-        
 
-            $statement->execute();
 
-            
 
-            
 
-        } catch (PDOException $e) {
 
-            
 
-            echo "An error occurred: " . $e->getMessage();
-
-        }
 
 
 
@@ -229,7 +380,15 @@
 
 
 
+
+
+
+
         $confiance = '0';
+
+
+
+
 
 
 
@@ -237,7 +396,15 @@
 
 
 
+
+
+
+
         $respect = '0';
+
+
+
+
 
 
 
@@ -245,7 +412,15 @@
 
 
 
+
+
+
+
         $tolerance = '0';
+
+
+
+
 
 
 
@@ -253,7 +428,15 @@
 
 
 
+
+
+
+
         $travail = '0';
+
+
+
+
 
 
 
@@ -261,7 +444,15 @@
 
 
 
+
+
+
+
         $autonomie = '0';
+
+
+
+
 
 
 
@@ -271,7 +462,19 @@
 
 
 
+
+
+
+
+
+
         if (!empty($_POST['savoir'])) {
+
+
+
+
+
+
 
 
 
@@ -309,7 +512,7 @@
 
 
 
-                    case '3':
+                  case '3':
 
 
 
@@ -403,11 +606,7 @@
 
                         break;
 
-
-
                 }
-
-
 
             }
 
@@ -415,13 +614,65 @@
 
     }
 
+    $statement = $bdd->prepare("UPDATE referent SET nom=:nom, prenom=:prenom, mail=:mail, duree=:duree, milieu=:milieu, valid=:valid, confiance=:confiance, bienveillance=:bienveillance, respect=:respect, honnetete=:honnetete, tolerance=:tolerance, impartial=:impartial, travail=:travail, equipe=:equipe, autonomie=:autonomie, communication=:communication WHERE id_jeune = :id_jeune AND id = :num_ref");
+
+
+
+    $statement->bindValue(':nom', $ref['nom']);
+
+    $statement->bindValue(':prenom', $ref['prenom']);
+
+    $statement->bindValue(':mail', $ref['mail']);
+
+    $statement->bindValue(':duree', $ref['duree']);
+
+    $statement->bindValue(':milieu', $ref['milieu']);
+
+    $statement->bindValue(':valid', $valid);
+
+    $statement->bindValue(':confiance', $confiance);
+
+    $statement->bindValue(':bienveillance', $bienveillance);
+
+    $statement->bindValue(':respect', $respect);
+
+    $statement->bindValue(':honnetete', $honnetete);
+
+    $statement->bindValue(':tolerance', $tolerance);
+
+    $statement->bindValue(':impartial', $impartial);
+
+    $statement->bindValue(':travail', $travail);
+
+    $statement->bindValue(':equipe', $equipe);
+
+    $statement->bindValue(':autonomie', $autonomie);
+
+    $statement->bindValue(':communication', $communication);
+
+    $statement->bindValue(':id_jeune', $id_jeune);
+
+    $statement->bindValue(':num_ref', $num_ref);
+
+
+
+    $statement->execute();
+
 
 
     header('Location: confirmation.php');
 
 
 
+
+
+
+
 }
+
+
+
+
 
 
 
