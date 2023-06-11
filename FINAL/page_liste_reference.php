@@ -596,7 +596,7 @@ if (isset($_POST['Valider'])) {
 
     <input type="submit" name="Valider" value="Valider">
     <br><br>
-    <input type="submit"  action="pdf_creator.php" name="Pdf" value="Télécharger toutes les références">
+    <input type="submit" name="Pdf" value="Télécharger toutes les références">
 
 
 
